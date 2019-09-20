@@ -1,0 +1,5 @@
+xcassets:
+  inputs: Placer/Placer/Resources/Assets.xcassets
+  outputs:
+    templateName: swift4
+    output: Placer/Placer/Sources/Assets.swift
