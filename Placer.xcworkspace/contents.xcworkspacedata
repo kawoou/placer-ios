@@ -2,19 +2,19 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Common.xcodeproj">
+      location = "group:Common/Common.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Domain.xcodeproj">
+      location = "group:Domain/Domain.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Network.xcodeproj">
+      location = "group:Network/Network.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Placer.xcodeproj">
+      location = "group:Placer/Placer.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Service.xcodeproj">
+      location = "group:Service/Service.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

@@ -1,76 +1,124 @@
-platform :ios, '11.0'
+platform :ios, '10.0'
+
+use_frameworks!
+
+workspace 'Placer.xcworkspace'
+
+project 'Common/Common.xcodeproj'
+project 'Domain/Domain.xcodeproj'
+project 'Network/Network.xcodeproj'
+project 'Service/Service.xcodeproj'
+project 'Placer/Placer.xcodeproj'
+
+def use_common_pods
+  # Dependency
+  pod 'Swinject'
+
+  # Rx
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
+  pod 'RxRelay', '~> 5'
+  pod 'RxOptional'
+  pod 'RxDataSources'
+
+  # Logging
+  pod 'SwiftyBeaver'
+end
 
 def use_test_pods
   pod 'Quick'
   pod 'Nimble'
 end
 
-abstract_target 'Workspace' do
-  workspace 'Placer.xcworkspace'
+def use_domain_pods
+end
 
-  use_frameworks!
+def use_network_pods
+  pod 'Moya', '~> 13.0'
+end
+
+def use_service_pods
+end
+
+target 'Common' do
+  project 'Common/Common.xcodeproj'
+  
+  use_common_pods
+
+  target 'CommonTests' do
+    inherit! :search_paths
+
+    use_test_pods
+  end
+end
+
+target 'Domain' do
+  project 'Domain/Domain.xcodeproj'
+  
+  use_common_pods
+  use_network_pods
+  use_domain_pods
+
+  target 'DomainTests' do
+    inherit! :search_paths
+
+    use_test_pods
+  end
+end
+
+target 'Network' do
+  project 'Network/Network.xcodeproj'
+  
+  use_common_pods
+  use_network_pods
+
+  target 'NetworkTests' do
+    inherit! :search_paths
+
+    use_test_pods
+  end
+end
+
+target 'Service' do
+  project 'Service/Service.xcodeproj'
+  
+  use_common_pods
+  use_network_pods
+  use_domain_pods
+  use_service_pods
+
+  target 'ServiceTests' do
+    inherit! :search_paths
+
+    use_test_pods
+  end
+end
+
+target 'Placer' do
+  project 'Placer/Placer.xcodeproj'
+  
+  use_common_pods
+  use_domain_pods
+  use_network_pods
+  use_service_pods
 
   # Rx
-  pod 'RxSwift'
-  pod 'RxCocoa'
-  pod 'RxOptional'
-  pod 'RxDataSources'
+  pod 'RxKeyboard'
 
-  # Logging
-  pod 'SwiftyBeaver'
+  # Binary
+  pod 'SwiftLint'
+  pod 'SwiftGen'
 
-  target 'Common' do
-    project 'Common.xcodeproj'
+  # Crashlytics
+  pod 'Fabric'
+  pod 'Crashlytics'
 
-    target 'CommonTests' do
-      use_test_pods
-    end
-  end
+  # UI
+  pod 'SnapKit'
 
-  target 'Domain' do
-    project 'Domain.xcodeproj'
+  target 'PlacerTests' do
+    inherit! :search_paths
 
-    target 'DomainTests' do
-      use_test_pods
-    end
-  end
-
-  target 'Network' do
-    project 'Network.xcodeproj'
-
-    pod 'Moya'
-
-    target 'NetworkTests' do
-      use_test_pods
-    end
-  end
-
-  target 'Service' do
-    project 'Service.xcodeproj'
-
-    target 'ServiceTests' do
-      use_test_pods
-    end
-  end
-
-  target 'Placer' do
-    project 'Placer.xcodeproj'
-
-    # Binary
-    pod 'SwiftLint'
-    pod 'SwiftGen'
-
-    # Crashlytics
-    pod 'Fabric'
-    pod 'Crashlytics'
-
-    # UI
-    pod 'SnapKit'
-
-    target 'PlacerTests' do
-      inherit! :search_paths
-
-      use_test_pods
-    end
+    use_test_pods
   end
 end

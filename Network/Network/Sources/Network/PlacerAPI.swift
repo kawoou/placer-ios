@@ -7,48 +7,47 @@
 //
 
 import Common
-
 import Moya
 
-enum PlacerAPI {
+public enum PlacerAPI {
     case login(LoginRequest)
 }
 
 extension PlacerAPI: TargetType {
-    var baseURL: URL {
+    public var baseURL: URL {
         return URL(string: NetworkConstant.baseURL)!
     }
     
-    var path: String {
+    public var path: String {
         switch self {
         case .login:
             return "/user/auth/login"
         }
     }
 
-    var method: Moya.Method {
+    public var method: Moya.Method {
         switch self {
         case .login:
             return .post
         }
     }
 
-    var sampleData: Data {
+    public var sampleData: Data {
         return Data()
     }
 
-    var task: Task {
+    public var task: Task {
         switch self {
         case .login(let request):
             return .requestJSONEncodable(request)
         }
     }
 
-    var headers: [String: String]? {
+    public var headers: [String: String]? {
         return [:]
     }
 
-    var validationType: ValidationType {
+    public var validationType: ValidationType {
         return .successCodes
     }
 }
