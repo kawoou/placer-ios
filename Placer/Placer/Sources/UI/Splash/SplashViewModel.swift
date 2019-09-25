@@ -23,6 +23,7 @@ final class SplashViewModel: ViewModel {
 
     // MARK: - Property
 
+    let coordinator: CoordinatorPerformable
     let input: Input
     let output: Output
 
@@ -33,10 +34,19 @@ final class SplashViewModel: ViewModel {
     // MARK: - Lifecycle
 
     init(
+        coordinator: CoordinatorPerformable,
         input: Input = .init(),
         output: Output = .init()
     ) {
+        self.coordinator = coordinator
         self.input = input
         self.output = output
+
+        Observable.just(Void())
+            .delay(.seconds(1), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { () in
+                coordinator <- AppCoordinator.Action.presentLogin
+            })
+            .disposed(by: disposeBag)
     }
 }

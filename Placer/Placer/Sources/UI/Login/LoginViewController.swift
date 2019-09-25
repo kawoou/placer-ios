@@ -113,10 +113,7 @@ final class LoginViewController: UIViewController {
             .disposed(by: disposeBag)
 
         registerButton.rx.tap
-            .asDriver()
-            .drive(onNext: { [weak self] () in
-                self?.present(container.resolve(RegisterViewController.self)!, animated: true)
-            })
+            .bind(to: viewModel.input.register)
             .disposed(by: disposeBag)
     }
 

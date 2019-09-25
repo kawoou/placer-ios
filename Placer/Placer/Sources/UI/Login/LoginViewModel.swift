@@ -28,6 +28,7 @@ final class LoginViewModel: ViewModel {
 
     // MARK: - Property
 
+    let coordinator: CoordinatorPerformable
     let input: Input
     let output: Output
 
@@ -38,9 +39,11 @@ final class LoginViewModel: ViewModel {
     // MARK: - Lifecycle
 
     init(
+        coordinator: CoordinatorPerformable,
         input: Input = .init(),
         output: Output = .init()
     ) {
+        self.coordinator = coordinator
         self.input = input
         self.output = output
 
@@ -59,5 +62,12 @@ final class LoginViewModel: ViewModel {
 //        input.submit
 //            .withLatestFrom(inputStream)
 //            .filter { $0.isValid() }s
+
+        input.register
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { () in
+                coordinator <- LoginCoordinator.Action.presentRegister
+            })
+            .disposed(by: disposeBag)
     }
 }

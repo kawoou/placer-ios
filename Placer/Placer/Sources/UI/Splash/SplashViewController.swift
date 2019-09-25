@@ -67,14 +67,6 @@ final class SplashViewController: UIViewController {
 
         setupConstraints()
         bind(viewModel: viewModel)
-
-        Observable.just(Void())
-            .delay(.seconds(1), scheduler: MainScheduler.instance)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { () in
-                container.resolve(UIWindow.self, name: "main")?.rootViewController = container.resolve(LoginViewController.self)
-            })
-            .disposed(by: disposeBag)
     }
 
     init(viewModel: SplashViewModel) {

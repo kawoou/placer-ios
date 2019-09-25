@@ -21,6 +21,7 @@ final class RegisterViewModel: ViewModel {
         private(set) var password1 = BehaviorObservable(value: "")
         private(set) var password2 = BehaviorObservable(value: "")
         let submit = PublishRelay<Void>()
+        let close = PublishRelay<Void>()
     }
     struct Output {
         let isSubmitActive = BehaviorRelay(value: false)
@@ -28,6 +29,7 @@ final class RegisterViewModel: ViewModel {
 
     // MARK: - Property
 
+    let coordinator: CoordinatorPerformable
     let input: Input
     let output: Output
 
@@ -38,9 +40,11 @@ final class RegisterViewModel: ViewModel {
     // MARK: - Lifecycle
 
     init(
+        coordinator: CoordinatorPerformable,
         input: Input = .init(),
         output: Output = .init()
     ) {
+        self.coordinator = coordinator
         self.input = input
         self.output = output
 
@@ -56,6 +60,13 @@ final class RegisterViewModel: ViewModel {
         inputStream
             .map { $0.isValid() }
             .bind(to: output.isSubmitActive)
+            .disposed(by: disposeBag)
+
+        input.close
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { () in
+                coordinator <- RegisterCoordinator.Action.dismiss
+            })
             .disposed(by: disposeBag)
     }
 

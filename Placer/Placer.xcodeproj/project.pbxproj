@@ -7,10 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03916C842D089B9FF20665C371A3E22D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FBBF5BF329279B9B9D6EBD9CD8BF11 /* Coordinator.swift */; };
 		0CCC5151471BDC962120D2F4DFCD2561 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2198E4556EEB9224422D590D5DB281D /* Network.framework */; };
+		12583AA44B73FEE5DCD61F6E75FCA6E3 /* FluentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1D7A2ECA19932EB9859D85FF0A3E80 /* FluentViewController.swift */; };
 		15299C17E0F9E706390877E83B799A12 /* Network.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2198E4556EEB9224422D590D5DB281D /* Network.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		17F6F6EC16E3C1D05547E4818D6D12B2 /* UIColor+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D35E2A115A56730797E1F325D5E1F2 /* UIColor+Image.swift */; };
+		18C60BC92B31886E74FFA00132420FEB /* RegisterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF10E83AD72FA02F9FA7907D798055 /* RegisterCoordinator.swift */; };
 		22B5187CBE62C61D4D5A8F53904A5E65 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F0A4A55A68278DA8A89062D013722C /* Domain.framework */; };
+		2ACACAB21F0F31710E3352FAA11B0ED3 /* FluentRenderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F7E087BBED094905AD741A01D23C61 /* FluentRenderInfo.swift */; };
+		2EF8276B27B9947A824723DAFDDA8882 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2555DD6790392D546BABBFB82E75EB32 /* MainTabBarController.swift */; };
+		319AB09E037799208A4CFC660AB33901 /* FluentRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4459FCFBEDBE02D367BE7DCDFC07535F /* FluentRenderable.swift */; };
 		3AB7C58DDB26719AE29C63BFC3B60460 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A743626993417898FB631F0446AFB4D /* Common.framework */; };
 		3BB714477DAE4367435B519513602DD5 /* Service.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D271634C3F5EED7210309CCC2DCAD0A /* Service.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45422611DC2E961C0829542002A7E964 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEE387146CB9EF3804031F94D882583 /* SplashViewController.swift */; };
@@ -19,14 +25,20 @@
 		508FCF4C37DC63FA706D6B23BCE9762B /* Pods_Placer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FB4B392E913B9CB27155A2C8C6D6AB /* Pods_Placer.framework */; };
 		53A8F0A07A40B1BAD5606EE39E93A1AE /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3D574140B5148BF3056D571DABD685 /* RegisterViewController.swift */; };
 		5833149B8877DE0526E646D711219621 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960D07A4C3E6D3EAB7F92BF3B81BD4CC /* Assets.swift */; };
+		587512997DAB37F4D24BDC300138BD0D /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA1658D009F1D1C0AC5CCF419F5E2F /* MainTabBarCoordinator.swift */; };
+		61FB5208E4F4E9F9F5354CBBA450A156 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6654DFCDF815A02D0047F7173BE16AAF /* RegisterViewModel.swift */; };
 		7629A0C5AD7AE7CF3CCD8A7EFE54C276 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26988AD092913E1C9394EAAE81BD5854 /* ViewController.swift */; };
 		763B908CE62910475711195B09F7231C /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36BCD0DDD5F7D74E86F6337D139EE9 /* UIViewController+Rx.swift */; };
+		793729E2A1F78312650AE0CD24CBE39F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4DC84D3763336AFEC65251635F5F441 /* GoogleService-Info.plist */; };
+		86E346E52C4A448D4F6590373D77168F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B6377B3BF8A0AA69E3BEB50C2015E7E /* MapKit.framework */; };
+		8B10BA8625359D88DA090BE8383EB194 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79163ECE3F3EC814CC6294C4FC42AEEC /* MapViewController.swift */; };
 		8DBE4306428C7507ED3B130FA9668231 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FF92B19AF77538C29423A98F1F9A02 /* LaunchScreen.storyboard */; };
 		946EBFEF7DCB83EF1F4BBAB175039329 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A77816B21AA47858539793F1CA9C017 /* AppDelegate.swift */; };
-		9DBE16FC233B307A00EA47F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9DBE16FB233B307A00EA47F5 /* GoogleService-Info.plist */; };
+		987A71532950BC0C7B0C34C0474D6E64 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272AAAF6B354EB0B13E614434C11525 /* LoginCoordinator.swift */; };
 		A095B9F8B80CA2F7EC18EB325F9D5196 /* Pods_PlacerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A6BD9633263A98DFB9D94AAEAA7A3C1 /* Pods_PlacerTests.framework */; };
 		AC6076003CD7A60EE1984D2FE2C65191 /* UIView+Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384A4604E582AF57900D8FBE743A31D3 /* UIView+Animate.swift */; };
 		BB5C1A66858A75971A9CBC2B57A7A893 /* PlacerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B90943B9F55882E8350BB0F61617608 /* PlacerButton.swift */; };
+		BDC223F2E58EB0BACA0B0E8E87107501 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197B3FEAD1E3432486DA85F2B899AE18 /* CoreLocation.framework */; };
 		C7C43B2E2020737297AA1296AAA45F3F /* PlacerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA0EEED2DC7F7213544A56C879ED334 /* PlacerTextField.swift */; };
 		D322CDA48EDC3A1FFDF40F044E75E118 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78713942C8788CAD869A101498C3FA /* LoginViewController.swift */; };
 		D863387022C29784E08FACF7EFBAF4A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A4EEF3BE275BF61B38DEF068EFA3647 /* Assets.xcassets */; };
@@ -34,6 +46,9 @@
 		E1B1B4DA9261A0A7A5A838EF311FB7A7 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99F0A4A55A68278DA8A89062D013722C /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E51B21DDFA2A57D8841825164977EC02 /* Service.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D271634C3F5EED7210309CCC2DCAD0A /* Service.framework */; };
 		E5777425BAC481CA5A18E085E720AC59 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A743626993417898FB631F0446AFB4D /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ECA21CDFAA77BE22236355B263FCA6EB /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3AFD22C7A3C7F8F03C34CA0292E53E /* SplashCoordinator.swift */; };
+		ECAC033D806B3EAAFE5D7A85B765DC5A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C5DB9E47164481BDFD650EA777697 /* AppCoordinator.swift */; };
+		EF54A24C819283553A5C5D0C0B7D3C10 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7725FC7EA9DBFC0966B515DDA393A363 /* MapCoordinator.swift */; };
 		F163846D4F0B30C54AF5DD2FB2428779 /* PlacerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36C38E3C3EE548AB43D83CCD6D1DC10 /* PlacerTests.swift */; };
 		F58E9307FE5AF2DAD07AD3DCA4DD0E6D /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AC42CBB86847498ED7D56B5C29690A /* SplashViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -68,37 +83,52 @@
 /* Begin PBXFileReference section */
 		0933CFB0D80B1F5C1360D9C578ABA8EC /* Pods-PlacerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlacerTests.release.xcconfig"; path = "Target Support Files/Pods-PlacerTests/Pods-PlacerTests.release.xcconfig"; sourceTree = "<group>"; };
 		16D35E2A115A56730797E1F325D5E1F2 /* UIColor+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Image.swift"; sourceTree = "<group>"; };
+		197B3FEAD1E3432486DA85F2B899AE18 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		2555DD6790392D546BABBFB82E75EB32 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		25CA1658D009F1D1C0AC5CCF419F5E2F /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		26988AD092913E1C9394EAAE81BD5854 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2B90943B9F55882E8350BB0F61617608 /* PlacerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacerButton.swift; sourceTree = "<group>"; };
 		3317849AF17943EF1EC5666F22408D3F /* Pods-PlacerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlacerTests.debug.xcconfig"; path = "Target Support Files/Pods-PlacerTests/Pods-PlacerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		384A4604E582AF57900D8FBE743A31D3 /* UIView+Animate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animate.swift"; sourceTree = "<group>"; };
 		3A743626993417898FB631F0446AFB4D /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D78713942C8788CAD869A101498C3FA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		41FBBF5BF329279B9B9D6EBD9CD8BF11 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4459FCFBEDBE02D367BE7DCDFC07535F /* FluentRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluentRenderable.swift; sourceTree = "<group>"; };
+		467C5DB9E47164481BDFD650EA777697 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		4A77816B21AA47858539793F1CA9C017 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CF6FF5BE21E143703FDD3BF5979D719 /* Pods-Placer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Placer.debug.xcconfig"; path = "Target Support Files/Pods-Placer/Pods-Placer.debug.xcconfig"; sourceTree = "<group>"; };
 		4E3C43ECB576537F35BC21E942197207 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		5352C55CE5330358E8A682E047134F64 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5A6BD9633263A98DFB9D94AAEAA7A3C1 /* Pods_PlacerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlacerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B6377B3BF8A0AA69E3BEB50C2015E7E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6654DFCDF815A02D0047F7173BE16AAF /* RegisterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		6A4EEF3BE275BF61B38DEF068EFA3647 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74AC42CBB86847498ED7D56B5C29690A /* SplashViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		74B3984A0AAF65DFD7498E68C43CE8B9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		7725FC7EA9DBFC0966B515DDA393A363 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
+		79163ECE3F3EC814CC6294C4FC42AEEC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7A86A53A721B9A8379B418DDC322FD9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7AA0EEED2DC7F7213544A56C879ED334 /* PlacerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacerTextField.swift; sourceTree = "<group>"; };
 		7D271634C3F5EED7210309CCC2DCAD0A /* Service.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Service.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87F7E087BBED094905AD741A01D23C61 /* FluentRenderInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluentRenderInfo.swift; sourceTree = "<group>"; };
 		960D07A4C3E6D3EAB7F92BF3B81BD4CC /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		99F0A4A55A68278DA8A89062D013722C /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9DBE16FB233B307A00EA47F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A272AAAF6B354EB0B13E614434C11525 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		AE44084186F0608B0A68F8E5E65EDB28 /* Dependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
 		B172265E43DAB60B91CD7C9DAABB44D9 /* Pods-Placer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Placer.release.xcconfig"; path = "Target Support Files/Pods-Placer/Pods-Placer.release.xcconfig"; sourceTree = "<group>"; };
 		B6FB4B392E913B9CB27155A2C8C6D6AB /* Pods_Placer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Placer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7EF10E83AD72FA02F9FA7907D798055 /* RegisterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCoordinator.swift; sourceTree = "<group>"; };
 		BD43CE061499C0CF3179636C848F1951 /* PlacerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlacerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2198E4556EEB9224422D590D5DB281D /* Network.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Network.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C36C38E3C3EE548AB43D83CCD6D1DC10 /* PlacerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacerTests.swift; sourceTree = "<group>"; };
+		C4DC84D3763336AFEC65251635F5F441 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CC3D574140B5148BF3056D571DABD685 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		CECA6F604BE50772E16614A2916E452F /* Placer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Placer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50D0698D659DF206ED3EB2665DAD022 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAEE387146CB9EF3804031F94D882583 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		FA36BCD0DDD5F7D74E86F6337D139EE9 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
+		FC3AFD22C7A3C7F8F03C34CA0292E53E /* SplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinator.swift; sourceTree = "<group>"; };
+		FF1D7A2ECA19932EB9859D85FF0A3E80 /* FluentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FluentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +137,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AB7C58DDB26719AE29C63BFC3B60460 /* Common.framework in Frameworks */,
+				BDC223F2E58EB0BACA0B0E8E87107501 /* CoreLocation.framework in Frameworks */,
 				22B5187CBE62C61D4D5A8F53904A5E65 /* Domain.framework in Frameworks */,
+				86E346E52C4A448D4F6590373D77168F /* MapKit.framework in Frameworks */,
 				0CCC5151471BDC962120D2F4DFCD2561 /* Network.framework in Frameworks */,
 				508FCF4C37DC63FA706D6B23BCE9762B /* Pods_Placer.framework in Frameworks */,
 				E51B21DDFA2A57D8841825164977EC02 /* Service.framework in Frameworks */,
@@ -128,6 +160,7 @@
 		278ACD21CA0BDCC9AE96FB6676D9D3BC /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				41FBBF5BF329279B9B9D6EBD9CD8BF11 /* Coordinator.swift */,
 				4E3C43ECB576537F35BC21E942197207 /* ViewModel.swift */,
 			);
 			path = Protocol;
@@ -152,7 +185,9 @@
 		4247566E42E42C555C16B6ADAE6F9048 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				B7EF10E83AD72FA02F9FA7907D798055 /* RegisterCoordinator.swift */,
 				CC3D574140B5148BF3056D571DABD685 /* RegisterViewController.swift */,
+				6654DFCDF815A02D0047F7173BE16AAF /* RegisterViewModel.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -162,8 +197,10 @@
 			children = (
 				6B3A2CBAC314A713FBE100E4DEBF81E8 /* Common */,
 				FA21B9A559832647C2F5520FE530A500 /* Login */,
+				F73780E9F826F319580618509F3876D0 /* Main */,
 				4247566E42E42C555C16B6ADAE6F9048 /* Register */,
 				FE5AC20D33A48DFA4525763028A87232 /* Splash */,
+				467C5DB9E47164481BDFD650EA777697 /* AppCoordinator.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -209,7 +246,7 @@
 		9113542A01BE3049FC45F87A8F67716C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9DBE16FB233B307A00EA47F5 /* GoogleService-Info.plist */,
+				C4DC84D3763336AFEC65251635F5F441 /* GoogleService-Info.plist */,
 				D50D0698D659DF206ED3EB2665DAD022 /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -235,6 +272,25 @@
 			path = Fluent;
 			sourceTree = "<group>";
 		};
+		F73780E9F826F319580618509F3876D0 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2DC271BE029DF3903CADA2B8DBFB7709 /* Map */,
+				2555DD6790392D546BABBFB82E75EB32 /* MainTabBarController.swift */,
+				25CA1658D009F1D1C0AC5CCF419F5E2F /* MainTabBarCoordinator.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2DC271BE029DF3903CADA2B8DBFB7709 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				7725FC7EA9DBFC0966B515DDA393A363 /* MapCoordinator.swift */,
+				79163ECE3F3EC814CC6294C4FC42AEEC /* MapViewController.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		A660F9C6849D6A102C6D67D0B387144E /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,7 +309,9 @@
 			isa = PBXGroup;
 			children = (
 				3A743626993417898FB631F0446AFB4D /* Common.framework */,
+				197B3FEAD1E3432486DA85F2B899AE18 /* CoreLocation.framework */,
 				99F0A4A55A68278DA8A89062D013722C /* Domain.framework */,
+				5B6377B3BF8A0AA69E3BEB50C2015E7E /* MapKit.framework */,
 				C2198E4556EEB9224422D590D5DB281D /* Network.framework */,
 				B6FB4B392E913B9CB27155A2C8C6D6AB /* Pods_Placer.framework */,
 				5A6BD9633263A98DFB9D94AAEAA7A3C1 /* Pods_PlacerTests.framework */,
@@ -303,6 +361,7 @@
 		FA21B9A559832647C2F5520FE530A500 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				A272AAAF6B354EB0B13E614434C11525 /* LoginCoordinator.swift */,
 				3D78713942C8788CAD869A101498C3FA /* LoginViewController.swift */,
 				74B3984A0AAF65DFD7498E68C43CE8B9 /* LoginViewModel.swift */,
 			);
@@ -322,6 +381,7 @@
 		FE5AC20D33A48DFA4525763028A87232 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				FC3AFD22C7A3C7F8F03C34CA0292E53E /* SplashCoordinator.swift */,
 				EAEE387146CB9EF3804031F94D882583 /* SplashViewController.swift */,
 				74AC42CBB86847498ED7D56B5C29690A /* SplashViewModel.swift */,
 			);
@@ -363,7 +423,7 @@
 				0D38C7138520549876CF04A2044E8D72 /* Resources */,
 				E7A809F2F765F71D08722BDA252FE938 /* [CP] Embed Pods Frameworks */,
 				306808392EA3E09CC3732352A7347761 /* Embed Frameworks */,
-				9DBE16FD233B334800EA47F5 /* Crashlytics */,
+				1DF2DD5AEE6963D5946A1303C793FB4A /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -418,7 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D863387022C29784E08FACF7EFBAF4A1 /* Assets.xcassets in Resources */,
-				9DBE16FC233B307A00EA47F5 /* GoogleService-Info.plist in Resources */,
+				793729E2A1F78312650AE0CD24CBE39F /* GoogleService-Info.plist in Resources */,
 				8DBE4306428C7507ED3B130FA9668231 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,7 +568,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftGen/bin/swiftgen\" config run --config \"${PODS_ROOT}/../swiftgen.yml\"\n";
 		};
-		9DBE16FD233B334800EA47F5 /* Crashlytics */ = {
+		1DF2DD5AEE6963D5946A1303C793FB4A /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -581,17 +641,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECAC033D806B3EAAFE5D7A85B765DC5A /* AppCoordinator.swift in Sources */,
 				946EBFEF7DCB83EF1F4BBAB175039329 /* AppDelegate.swift in Sources */,
-				49A336AA668D2E51CBC6AF71ED719E0F /* AppDependency.swift in Sources */,
 				5833149B8877DE0526E646D711219621 /* Assets.swift in Sources */,
+				03916C842D089B9FF20665C371A3E22D /* Coordinator.swift in Sources */,
+				DF7C0BB7F21785592085183547CA85C7 /* Dependency.swift in Sources */,
 				2ACACAB21F0F31710E3352FAA11B0ED3 /* FluentRenderInfo.swift in Sources */,
 				319AB09E037799208A4CFC660AB33901 /* FluentRenderable.swift in Sources */,
 				12583AA44B73FEE5DCD61F6E75FCA6E3 /* FluentViewController.swift in Sources */,
+				987A71532950BC0C7B0C34C0474D6E64 /* LoginCoordinator.swift in Sources */,
 				D322CDA48EDC3A1FFDF40F044E75E118 /* LoginViewController.swift in Sources */,
 				4D11048695C499C2715880050C4DF50B /* LoginViewModel.swift in Sources */,
+				2EF8276B27B9947A824723DAFDDA8882 /* MainTabBarController.swift in Sources */,
+				587512997DAB37F4D24BDC300138BD0D /* MainTabBarCoordinator.swift in Sources */,
+				EF54A24C819283553A5C5D0C0B7D3C10 /* MapCoordinator.swift in Sources */,
+				8B10BA8625359D88DA090BE8383EB194 /* MapViewController.swift in Sources */,
 				BB5C1A66858A75971A9CBC2B57A7A893 /* PlacerButton.swift in Sources */,
 				C7C43B2E2020737297AA1296AAA45F3F /* PlacerTextField.swift in Sources */,
+				18C60BC92B31886E74FFA00132420FEB /* RegisterCoordinator.swift in Sources */,
 				53A8F0A07A40B1BAD5606EE39E93A1AE /* RegisterViewController.swift in Sources */,
+				61FB5208E4F4E9F9F5354CBBA450A156 /* RegisterViewModel.swift in Sources */,
+				ECA21CDFAA77BE22236355B263FCA6EB /* SplashCoordinator.swift in Sources */,
 				45422611DC2E961C0829542002A7E964 /* SplashViewController.swift in Sources */,
 				F58E9307FE5AF2DAD07AD3DCA4DD0E6D /* SplashViewModel.swift in Sources */,
 				17F6F6EC16E3C1D05547E4818D6D12B2 /* UIColor+Image.swift in Sources */,

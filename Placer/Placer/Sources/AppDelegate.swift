@@ -12,6 +12,8 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    let appCoordinator = container.resolve(AppCoordinator.self)!
+
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -19,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
 
         /// Window
-        window = container.resolve(UIWindow.self, name: "main")!
+        window = appCoordinator.target
+        appCoordinator <- AppCoordinator.Action.presentMain
 
         return true
     }
