@@ -14,7 +14,6 @@
 		3AB7C58DDB26719AE29C63BFC3B60460 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A743626993417898FB631F0446AFB4D /* Common.framework */; };
 		3BB714477DAE4367435B519513602DD5 /* Service.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D271634C3F5EED7210309CCC2DCAD0A /* Service.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45422611DC2E961C0829542002A7E964 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEE387146CB9EF3804031F94D882583 /* SplashViewController.swift */; };
-		49A336AA668D2E51CBC6AF71ED719E0F /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B179174397723A5CCD2AE3E9310E9E86 /* AppDependency.swift */; };
 		4A06F24A78131E38EED1ABE96F94ED3B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E3C43ECB576537F35BC21E942197207 /* ViewModel.swift */; };
 		4D11048695C499C2715880050C4DF50B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B3984A0AAF65DFD7498E68C43CE8B9 /* LoginViewModel.swift */; };
 		508FCF4C37DC63FA706D6B23BCE9762B /* Pods_Placer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6FB4B392E913B9CB27155A2C8C6D6AB /* Pods_Placer.framework */; };
@@ -31,6 +30,7 @@
 		AC6076003CD7A60EE1984D2FE2C65191 /* UIView+Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384A4604E582AF57900D8FBE743A31D3 /* UIView+Animate.swift */; };
 		D322CDA48EDC3A1FFDF40F044E75E118 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D78713942C8788CAD869A101498C3FA /* LoginViewController.swift */; };
 		D863387022C29784E08FACF7EFBAF4A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A4EEF3BE275BF61B38DEF068EFA3647 /* Assets.xcassets */; };
+		DF7C0BB7F21785592085183547CA85C7 /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE44084186F0608B0A68F8E5E65EDB28 /* Dependency.swift */; };
 		E1B1B4DA9261A0A7A5A838EF311FB7A7 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99F0A4A55A68278DA8A89062D013722C /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E51B21DDFA2A57D8841825164977EC02 /* Service.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D271634C3F5EED7210309CCC2DCAD0A /* Service.framework */; };
 		E5777425BAC481CA5A18E085E720AC59 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A743626993417898FB631F0446AFB4D /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -87,8 +87,8 @@
 		960D07A4C3E6D3EAB7F92BF3B81BD4CC /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		99F0A4A55A68278DA8A89062D013722C /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBE16FB233B307A00EA47F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AE44084186F0608B0A68F8E5E65EDB28 /* Dependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
 		B172265E43DAB60B91CD7C9DAABB44D9 /* Pods-Placer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Placer.release.xcconfig"; path = "Target Support Files/Pods-Placer/Pods-Placer.release.xcconfig"; sourceTree = "<group>"; };
-		B179174397723A5CCD2AE3E9310E9E86 /* AppDependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		B6FB4B392E913B9CB27155A2C8C6D6AB /* Pods_Placer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Placer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B55C767C4F37BCA4433B7DD125E540 /* PlacerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacerButton.swift; sourceTree = "<group>"; };
 		BD43CE061499C0CF3179636C848F1951 /* PlacerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlacerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,7 +145,7 @@
 		2CB4F444F0582F8688C3788B1B2B1B6B /* Dependency */ = {
 			isa = PBXGroup;
 			children = (
-				B179174397723A5CCD2AE3E9310E9E86 /* AppDependency.swift */,
+				AE44084186F0608B0A68F8E5E65EDB28 /* Dependency.swift */,
 			);
 			path = Dependency;
 			sourceTree = "<group>";
