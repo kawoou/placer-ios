@@ -11,14 +11,19 @@
 		107D5FDB842A7B23CF752D35FE14729C /* CommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32AB3A2E5E33210F25D064907B221D3 /* CommonTests.swift */; };
 		1BA28BEBB2DBDFF0106AF62E8375BC23 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10609994E9B3A6D185D57FA9B27F82C /* Validator.swift */; };
 		2951FC696D61DF2471E260A173D4275C /* Valid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371576842A05CD33F87B527D738702EF /* Valid.swift */; };
+		2DB3F5A0160735D5E1B5E29D8E17EAC9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06865F7721673D2A1B97FD43DA4B5263 /* Logger.swift */; };
+		5442339E3C51E0957EFB0DE0798DB621 /* SafeLayoutMargin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72913C333F22A5F5ECD452715E3503B4 /* SafeLayoutMargin.swift */; };
+		5620BDCF26DC42110BD6785E3EDC5207 /* AbstractError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77673FB00890BABEEC1B4409660D48AC /* AbstractError.swift */; };
 		65C24B8C5A30897E2147C22647B523B0 /* BehaviorObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68D9E18D95CC52BCBCB0275DA35C484 /* BehaviorObservable.swift */; };
+		6AEAE318F456E3B70BAABF779F6FCD1C /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1C0BAC55C7FFA20D11B797A62C122C /* CommonError.swift */; };
 		6EAD2239C80B30A28BFA746553DDCD54 /* Pods_CommonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C60EB34FCA3349B5D9C8C12E3BD8E989 /* Pods_CommonTests.framework */; };
 		7063954D909CD6E6908E38284B014562 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 57ABCB5BCBAFD3240371498B3DD14753 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83E4BAF5B7A13AF360AF124C18DFF2AE /* LoggerConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E669ACB6F6A77BECDCF070D84E8BC8CC /* LoggerConstant.swift */; };
 		8E0A11225172DEE4089CFC078151BB9C /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E0E494E2CD31957C4E0CB85867DA64A /* Common.framework */; };
 		9835D3F0200C6741996F3EC157E6EC06 /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60E5EAAE2BC0FD6DF85C54F45E0C7FCE /* Pods_Common.framework */; };
-		9DEEA2E0233B3D87005D23DA /* RegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEEA2DF233B3D87005D23DA /* RegisterRequest.swift */; };
 		BC9AD7790AE083644BD2340CF23DEA0F /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BA80AFF4CDB6B7A81DFCA8D8BC9FD6 /* NetworkConstant.swift */; };
 		D52891BE055473675C970E3F1168CB0E /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB4468C10B23A77CBC1C2155856627 /* LoginResponse.swift */; };
+		DDE98D934EE84D3B129982202FA70EE6 /* RegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0E5AF05DB4B82482AF06B0A31A0058 /* RegisterRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06865F7721673D2A1B97FD43DA4B5263 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		15BB4468C10B23A77CBC1C2155856627 /* LoginResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		371576842A05CD33F87B527D738702EF /* Valid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Valid.swift; sourceTree = "<group>"; };
 		3C76D751B4A41EF3E5D875B7E32228C6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,16 +45,20 @@
 		57ABCB5BCBAFD3240371498B3DD14753 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		60E5EAAE2BC0FD6DF85C54F45E0C7FCE /* Pods_Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E0E494E2CD31957C4E0CB85867DA64A /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		72913C333F22A5F5ECD452715E3503B4 /* SafeLayoutMargin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafeLayoutMargin.swift; sourceTree = "<group>"; };
 		76BA80AFF4CDB6B7A81DFCA8D8BC9FD6 /* NetworkConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConstant.swift; sourceTree = "<group>"; };
+		77673FB00890BABEEC1B4409660D48AC /* AbstractError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractError.swift; sourceTree = "<group>"; };
 		7A034ABA50CD561162CD5897283D85CF /* Pods-Common.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.debug.xcconfig"; path = "Target Support Files/Pods-Common/Pods-Common.debug.xcconfig"; sourceTree = "<group>"; };
 		7CA0E98C69B80E2B6745DB73714E938B /* CommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F1C0BAC55C7FFA20D11B797A62C122C /* CommonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonError.swift; sourceTree = "<group>"; };
 		89E13B00D6BB1B27896F41820C3FF2F1 /* Pods-Common.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.release.xcconfig"; path = "Target Support Files/Pods-Common/Pods-Common.release.xcconfig"; sourceTree = "<group>"; };
 		945DBD7B688F3E624A8728E870676EB7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9DEEA2DF233B3D87005D23DA /* RegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRequest.swift; sourceTree = "<group>"; };
 		A68D9E18D95CC52BCBCB0275DA35C484 /* BehaviorObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorObservable.swift; sourceTree = "<group>"; };
 		B90DF0E4392CB12BCDBB79966AB0565E /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		C60EB34FCA3349B5D9C8C12E3BD8E989 /* Pods_CommonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10609994E9B3A6D185D57FA9B27F82C /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		E669ACB6F6A77BECDCF070D84E8BC8CC /* LoggerConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerConstant.swift; sourceTree = "<group>"; };
+		ED0E5AF05DB4B82482AF06B0A31A0058 /* RegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRequest.swift; sourceTree = "<group>"; };
 		ED255824F91949D81196C0EA506A260D /* Pods-CommonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonTests.release.xcconfig"; path = "Target Support Files/Pods-CommonTests/Pods-CommonTests.release.xcconfig"; sourceTree = "<group>"; };
 		F32AB3A2E5E33210F25D064907B221D3 /* CommonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +104,7 @@
 		217193105359ADCE119C173252966BEC /* Constant */ = {
 			isa = PBXGroup;
 			children = (
+				E669ACB6F6A77BECDCF070D84E8BC8CC /* LoggerConstant.swift */,
 				76BA80AFF4CDB6B7A81DFCA8D8BC9FD6 /* NetworkConstant.swift */,
 			);
 			path = Constant;
@@ -166,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				B90DF0E4392CB12BCDBB79966AB0565E /* LoginRequest.swift */,
-				9DEEA2DF233B3D87005D23DA /* RegisterRequest.swift */,
+				ED0E5AF05DB4B82482AF06B0A31A0058 /* RegisterRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -178,6 +189,32 @@
 				8043C1FC5C417365DC2CDCCE69EEAD16 /* Supporting Files */,
 			);
 			path = CommonTests;
+			sourceTree = "<group>";
+		};
+		AFF0A725FC2F0D48DB8298FB9A724DEE /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B156CF7AEBB82557E2EE31DB80E2F1D0 /* Logging */,
+				72913C333F22A5F5ECD452715E3503B4 /* SafeLayoutMargin.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B156CF7AEBB82557E2EE31DB80E2F1D0 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				06865F7721673D2A1B97FD43DA4B5263 /* Logger.swift */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
+		9C0E7DF66CA89BF7D79C7275DA332F3E /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				77673FB00890BABEEC1B4409660D48AC /* AbstractError.swift */,
+				7F1C0BAC55C7FFA20D11B797A62C122C /* CommonError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		AAD161BAA3225B1CE95B2E7C9648E8B3 /* Common */ = {
@@ -213,6 +250,8 @@
 			children = (
 				32CE85D84AA60873E8C6ED24CC94462F /* Annotation */,
 				217193105359ADCE119C173252966BEC /* Constant */,
+				AFF0A725FC2F0D48DB8298FB9A724DEE /* Core */,
+				9C0E7DF66CA89BF7D79C7275DA332F3E /* Error */,
 				21A8748AFCDA711A521BA4F8657E3BDB /* Model */,
 				AB32AEDDA7287DB5EAE4318FE95300B1 /* Rx */,
 				57ABCB5BCBAFD3240371498B3DD14753 /* Common.h */,
@@ -404,11 +443,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5620BDCF26DC42110BD6785E3EDC5207 /* AbstractError.swift in Sources */,
 				65C24B8C5A30897E2147C22647B523B0 /* BehaviorObservable.swift in Sources */,
+				6AEAE318F456E3B70BAABF779F6FCD1C /* CommonError.swift in Sources */,
+				2DB3F5A0160735D5E1B5E29D8E17EAC9 /* Logger.swift in Sources */,
+				83E4BAF5B7A13AF360AF124C18DFF2AE /* LoggerConstant.swift in Sources */,
 				0585D4E32E8243436DF72FCBF7C70524 /* LoginRequest.swift in Sources */,
 				D52891BE055473675C970E3F1168CB0E /* LoginResponse.swift in Sources */,
 				BC9AD7790AE083644BD2340CF23DEA0F /* NetworkConstant.swift in Sources */,
-				9DEEA2E0233B3D87005D23DA /* RegisterRequest.swift in Sources */,
+				DDE98D934EE84D3B129982202FA70EE6 /* RegisterRequest.swift in Sources */,
+				5442339E3C51E0957EFB0DE0798DB621 /* SafeLayoutMargin.swift in Sources */,
 				2951FC696D61DF2471E260A173D4275C /* Valid.swift in Sources */,
 				1BA28BEBB2DBDFF0106AF62E8375BC23 /* Validator.swift in Sources */,
 			);
