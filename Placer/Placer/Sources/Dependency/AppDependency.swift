@@ -35,7 +35,11 @@ public let container = Container(parent: Service.container, defaultObjectScope: 
         return LoginViewController(viewModel: viewModel)
     }
 
-    container.register(RegisterViewController.self) { _ in
-        return RegisterViewController()
+    container.register(RegisterViewModel.self) { _ in
+        return RegisterViewModel()
+    }
+    container.register(RegisterViewController.self) { resolver in
+        let viewModel = resolver.resolve(RegisterViewModel.self)!
+        return RegisterViewController(viewModel: viewModel)
     }
 }

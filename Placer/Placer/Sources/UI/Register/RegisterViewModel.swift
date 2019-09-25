@@ -1,8 +1,8 @@
 //
-//  LoginViewModel.swift
+//  RegisterViewModel.swift
 //  Placer
 //
-//  Created by Kawoou on 24/09/2019.
+//  Created by Kawoou on 25/09/2019.
 //  Copyright © 2019 kawoou. All rights reserved.
 //
 
@@ -11,19 +11,19 @@ import Service
 import RxSwift
 import RxRelay
 
-final class LoginViewModel: ViewModel {
+final class RegisterViewModel: ViewModel {
 
     // MARK: - ViewModel
 
     struct Input {
+        private(set) var nickname = BehaviorObservable(value: "")
         private(set) var email = BehaviorObservable(value: "")
-        private(set) var password = BehaviorObservable(value: "")
+        private(set) var password1 = BehaviorObservable(value: "")
+        private(set) var password2 = BehaviorObservable(value: "")
         let submit = PublishRelay<Void>()
-        let register = PublishRelay<Void>()
     }
     struct Output {
         let isSubmitActive = BehaviorRelay(value: false)
-        let isLoggedIn = BehaviorRelay(value: false)
     }
 
     // MARK: - Property
@@ -46,18 +46,17 @@ final class LoginViewModel: ViewModel {
 
         let inputStream = Observable
             .combineLatest(
+                input.nickname,
                 input.email,
-                input.password
-            ) { LoginRequest(email: $0, password: $1) }
+                input.password1,
+                input.password2
+            ) { RegisterRequest(nickname: $0, email: $1, password1: $2, password2: $3) }
             .share(replay: 1, scope: .forever)
 
         inputStream
             .map { $0.isValid() }
             .bind(to: output.isSubmitActive)
             .disposed(by: disposeBag)
-
-//        input.submit
-//            .withLatestFrom(inputStream)
-//            .filter { $0.isValid() }s
     }
+
 }

@@ -43,7 +43,7 @@ final class RegisterViewController: UIViewController {
         let view = PlacerTextField()
         view.label = "이메일"
         view.placeholder = "E-mail"
-        view.keyboardType = .default
+        view.keyboardType = .emailAddress
         view.returnKeyType = .next
         view.tag = 1
         return view
@@ -58,7 +58,7 @@ final class RegisterViewController: UIViewController {
         view.tag = 2
         return view
     }()
-    private lazy var passwordVerifyField: PlacerTextField = {
+    private lazy var passwordRetypeField: PlacerTextField = {
         let view = PlacerTextField()
         view.label = "비밀번호 확인"
         view.placeholder = "Retype password"
@@ -78,6 +78,8 @@ final class RegisterViewController: UIViewController {
     // MARK: - Private
 
     private let disposeBag = DisposeBag()
+
+    private let viewModel: RegisterViewModel
 
     private func setupConstraints() {
         titleLabel.snp.makeConstraints { maker in
@@ -103,7 +105,7 @@ final class RegisterViewController: UIViewController {
             maker.top.equalTo(emailField.snp.bottom).offset(30)
             maker.leading.trailing.height.equalTo(nicknameField)
         }
-        passwordVerifyField.snp.makeConstraints { maker in
+        passwordRetypeField.snp.makeConstraints { maker in
             maker.top.equalTo(passwordField.snp.bottom).offset(30)
             maker.leading.trailing.height.equalTo(nicknameField)
         }
@@ -120,7 +122,7 @@ final class RegisterViewController: UIViewController {
                 nicknameField.rx.isFocus.asObservable(),
                 emailField.rx.isFocus.asObservable(),
                 passwordField.rx.isFocus.asObservable(),
-                passwordVerifyField.rx.isFocus.asObservable()
+                passwordRetypeField.rx.isFocus.asObservable()
             )
             .filter { $0 }
             .map { [weak self] _ in self?.view.currentFirstResponder() }
@@ -135,9 +137,10 @@ final class RegisterViewController: UIViewController {
                 return max(0, $0.frame.maxY - area)
             }
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] offset in
-                self?.view.transform = CGAffineTransform(translationX: 0, y: -offset)
-            })
+            .flatMapAnimate(self.view, duration: 0.2) {
+                $0.transform = CGAffineTransform(translationX: 0, y: -$1)
+            }
+            .subscribe()
             .disposed(by: disposeBag)
 
         closeButton.rx.tap
@@ -148,10 +151,38 @@ final class RegisterViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
+    private func bind(viewModel: RegisterViewModel) {
+        /// Output
+        viewModel.output.isSubmitActive
+            .bind(to: submitButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        /// Input
+        nicknameField.rx.text.orEmpty
+            .bind(to: viewModel.input.nickname)
+            .disposed(by: disposeBag)
+
+        emailField.rx.text.orEmpty
+            .bind(to: viewModel.input.email)
+            .disposed(by: disposeBag)
+
+        passwordField.rx.text.orEmpty
+            .bind(to: viewModel.input.password1)
+            .disposed(by: disposeBag)
+
+        passwordRetypeField.rx.text.orEmpty
+            .bind(to: viewModel.input.password2)
+            .disposed(by: disposeBag)
+    }
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = true
+        }
 
         view.backgroundColor = Asset.colorGray1.color
 
@@ -161,12 +192,22 @@ final class RegisterViewController: UIViewController {
         view.addSubview(nicknameField)
         view.addSubview(emailField)
         view.addSubview(passwordField)
-        view.addSubview(passwordVerifyField)
+        view.addSubview(passwordRetypeField)
 
         view.addSubview(submitButton)
 
         setupConstraints()
         bindEvents()
+        bind(viewModel: viewModel)
+    }
+
+    init(viewModel: RegisterViewModel) {
+        self.viewModel = viewModel
+
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
