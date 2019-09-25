@@ -28,6 +28,8 @@ internal enum Asset {
   internal static let iconBrandBlack = ImageAsset(name: "icon-brand-black")
   internal static let iconBrandWhite = ImageAsset(name: "icon-brand-white")
   internal static let iconClose = ImageAsset(name: "icon-close")
+  internal static let iconLocationLine = ImageAsset(name: "icon-location-line")
+  internal static let iconLocationSolid = ImageAsset(name: "icon-location-solid")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
