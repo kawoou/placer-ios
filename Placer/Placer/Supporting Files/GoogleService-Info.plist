@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>474607427326-u7v22qtpth5hvd3ud1u8mv4abcr5u8su.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.474607427326-u7v22qtpth5hvd3ud1u8mv4abcr5u8su</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAh-Hi6WaGdyfhSZ-JtSJS9b5NCB7WiSJs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>474607427326</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>io.kawoou.placer</string>
+	<key>PROJECT_ID</key>
+	<string>placer-31804</string>
+	<key>STORAGE_BUCKET</key>
+	<string>placer-31804.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:474607427326:ios:06afb41666dd87eaedcfaf</string>
+	<key>DATABASE_URL</key>
+	<string>https://placer-31804.firebaseio.com</string>
+</dict>
+</plist>

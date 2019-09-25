@@ -109,6 +109,9 @@ target 'Placer' do
   pod 'SwiftLint'
   pod 'SwiftGen'
 
+  # Analytics
+  pod 'Firebase/Analytics'
+
   # Crashlytics
   pod 'Fabric'
   pod 'Crashlytics'
