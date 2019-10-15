@@ -6,8 +6,6 @@
 //  Copyright © 2019 kawoou. All rights reserved.
 //
 
-import Foundation
-
 @propertyWrapper
 public struct Valid<Value> {
 
@@ -16,32 +14,33 @@ public struct Valid<Value> {
     private let validator: Validator<Value>
     private let asserts: Bool
 
-    private var value: Value?
+    public private(set) var validatedValue: Result<Value, Error>
 
     // MARK: - Public
 
-    public func isValid() -> Bool {
-        return wrappedValue != nil
-    }
-
     public var wrappedValue: Value? {
         get {
-            return value
+            switch validatedValue {
+            case .success(let value):
+                return value
+            case .failure:
+                return nil
+            }
         }
         set {
             guard let newValue = newValue else {
-                value = nil
+                validatedValue = .failure(ValidError.nilValue)
                 return
             }
 
-            switch validator.validate(newValue) {
-            case .success(let newValue):
-                value = newValue
-            case .failure(let error):
-                if asserts {
+            validatedValue = validator.validate(newValue)
+
+            if asserts {
+                switch validatedValue {
+                case .success: break
+                case .failure(let error):
                     assertionFailure(error.localizedDescription)
                 }
-                value = nil
             }
         }
     }
@@ -54,5 +53,31 @@ public struct Valid<Value> {
     ) {
         self.validator = validator
         self.asserts = asserts
+        self.validatedValue = .failure(ValidError.nilValue)
+    }
+
+    public init(
+        initialValue value: Value,
+        _ validator: Validator<Value>,
+        asserts: Bool = false
+    ) {
+        self.init(validator, asserts: asserts)
+
+        wrappedValue = value
+   }
+}
+
+extension Valid: Validable {
+    public func isValid() -> Bool {
+        return wrappedValue != nil
+    }
+}
+
+extension Valid: Encodable where Value: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        if let value = wrappedValue {
+            try container.encode(value)
+        }
     }
 }

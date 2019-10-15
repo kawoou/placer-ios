@@ -10,7 +10,14 @@ import Domain
 import Swinject
 
 public let container = Container(parent: Domain.container) { container in
-    container.register(UserService.self) { (resolver, userRepository) in
+    container.register(UserService.self) { resolver in
+        let userRepository = resolver.resolve(UserRepository.self)!
         return UserServiceImpl(userRepository: userRepository)
+    }
+    container.register(LocationService.self) { _ in
+        return LocationServiceImpl()
+    }
+    container.register(PlaceService.self) { _ in
+        return SamplePlaceServiceImpl()
     }
 }

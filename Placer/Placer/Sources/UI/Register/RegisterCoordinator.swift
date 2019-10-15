@@ -13,7 +13,7 @@ final class RegisterCoordinator: Coordinator {
         case dismiss
     }
 
-    func instanciate() -> RegisterViewController {
+    func instantiate() -> RegisterViewController {
         return container.resolve(RegisterViewController.self)!
     }
 

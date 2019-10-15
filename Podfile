@@ -38,6 +38,9 @@ def use_network_pods
 end
 
 def use_service_pods
+  pod 'SPPermission/Location'
+  pod 'SPPermission/Camera'
+  pod 'SPPermission/PhotoLibrary'
 end
 
 target 'Common' do

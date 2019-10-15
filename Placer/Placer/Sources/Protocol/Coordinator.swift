@@ -35,7 +35,7 @@ protocol _Coordinator: CoordinatorPerformable {
     associatedtype Target
     associatedtype Action
 
-    func instanciate() -> Target
+    func instantiate() -> Target
     func coordinate(_ action: Action) -> [CoordinatorAction<Target>]
 
     init()
@@ -47,8 +47,8 @@ extension _Coordinator {
             return target
         }
 
-        let target = instanciate()
-        objc_setAssociatedObject(self, &targetKey, target, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        let target = instantiate()
+        objc_setAssociatedObject(self, &targetKey, target, .OBJC_ASSOCIATION_ASSIGN)
         return target
     }
 

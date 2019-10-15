@@ -18,6 +18,8 @@
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
+  internal static let btnAdd = ImageAsset(name: "btn-add")
+  internal static let btnBack = ImageAsset(name: "btn-back")
   internal static let colorGray1 = ColorAsset(name: "color-gray1")
   internal static let colorGray2 = ColorAsset(name: "color-gray2")
   internal static let colorGray3 = ColorAsset(name: "color-gray3")
@@ -28,8 +30,13 @@ internal enum Asset {
   internal static let iconBrandBlack = ImageAsset(name: "icon-brand-black")
   internal static let iconBrandWhite = ImageAsset(name: "icon-brand-white")
   internal static let iconClose = ImageAsset(name: "icon-close")
+  internal static let iconLiked = ImageAsset(name: "icon-liked")
   internal static let iconLocationLine = ImageAsset(name: "icon-location-line")
   internal static let iconLocationSolid = ImageAsset(name: "icon-location-solid")
+  internal static let iconPlus = ImageAsset(name: "icon-plus")
+  internal static let iconSearch = ImageAsset(name: "icon-search")
+  internal static let iconUnliked = ImageAsset(name: "icon-unliked")
+  internal static let noru = ImageAsset(name: "noru")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

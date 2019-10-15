@@ -11,9 +11,11 @@ import UIKit
 final class MapCoordinator: Coordinator {
     enum Action {
         case popToRoot
+        case presentAdd
+        case pushPlace(Int)
     }
 
-    func instanciate() -> MapViewController {
+    func instantiate() -> MapViewController {
         return container.resolve(MapViewController.self)!
     }
 
@@ -21,6 +23,12 @@ final class MapCoordinator: Coordinator {
         switch action {
         case .popToRoot:
             return [.popToRoot(animated: false)]
+
+        case .presentAdd:
+            return [.present(container.resolve(AddCoordinator.self)!)]
+
+        case let .pushPlace(id):
+            return [.push(container.resolve(PlaceCoordinator.self, argument: id)!)]
         }
     }
 }

@@ -52,6 +52,7 @@ final class LoginViewModel: ViewModel {
                 input.email,
                 input.password
             ) { LoginRequest(email: $0, password: $1) }
+            .filter { $0.isValid() }
             .share(replay: 1, scope: .forever)
 
         inputStream
@@ -59,9 +60,12 @@ final class LoginViewModel: ViewModel {
             .bind(to: output.isSubmitActive)
             .disposed(by: disposeBag)
 
-//        input.submit
-//            .withLatestFrom(inputStream)
-//            .filter { $0.isValid() }s
+        input.submit
+            .withLatestFrom(inputStream)
+            .map { String(data: try JSONEncoder().encode($0), encoding: .utf8)! }
+            .debug()
+            .subscribe()
+            .disposed(by: disposeBag)
 
         input.register
             .observeOn(MainScheduler.instance)

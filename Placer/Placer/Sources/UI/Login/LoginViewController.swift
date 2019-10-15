@@ -115,6 +115,10 @@ final class LoginViewController: UIViewController {
         registerButton.rx.tap
             .bind(to: viewModel.input.register)
             .disposed(by: disposeBag)
+
+        submitButton.rx.tap
+            .bind(to: viewModel.input.submit)
+            .disposed(by: disposeBag)
     }
 
     // MARK: - Lifecycle

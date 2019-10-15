@@ -52,9 +52,14 @@ final class RegisterViewModel: ViewModel {
             .combineLatest(
                 input.nickname,
                 input.email,
-                input.password1,
-                input.password2
-            ) { RegisterRequest(nickname: $0, email: $1, password1: $2, password2: $3) }
+                Observable
+                    .combineLatest(
+                        input.password1,
+                        input.password2
+                    )
+                    .filter { $0.0 == $0.1 }
+                    .map { $0.0 }
+            ) { RegisterRequest(nickname: $0, email: $1, password: $2) }
             .share(replay: 1, scope: .forever)
 
         inputStream

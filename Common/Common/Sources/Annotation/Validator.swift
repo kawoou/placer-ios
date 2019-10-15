@@ -15,6 +15,10 @@ enum ValidatorError: Error {
     case invalidEmail
     case limitedStringLength
     case emptyString
+    case notMatchedRegularExpression
+    case limitedRange
+    case shouldNotBeSuccess
+    case doubleFailure
 }
 
 public struct Validator<Value> {
@@ -110,22 +114,71 @@ public extension Validator where Value == String {
            }
         }
     }
+    static func regex(_ pattern: String) -> Validator<Value> {
+        Validator {
+            let predicate = NSPredicate(format:"SELF MATCHES %@", pattern)
+            if predicate.evaluate(with: $0) {
+                return .success($0)
+            } else {
+                return .failure(ValidatorError.notMatchedRegularExpression)
+            }
+        }
+    }
 }
 
-//public extension Valid where Value == String {
-//    init(regex: String, asserts: Bool = false) {
-//        self.init({ $0.range(of: regex, options: .regularExpression) != nil },
-//                  asserts: asserts,
-//                  message: { "Error: \($0) doesn't match regex: \(regex)" })
-//    }
-//}
-//
-//public extension Valid where Value: FixedWidthInteger {
-//    init(min: Value = .min, max: Value = .max, asserts: Bool = false) {
-//        self.init({ (min...max).contains($0) }, asserts: asserts, message: { "Error: \($0) not between \(min) and \(max)" })
-//    }
-//}
-//
+public extension Validator where Value: FixedWidthInteger {
+    static func limit(min: Value = .min, max: Value = .max) -> Validator<Value> {
+        return Validator {
+            if (min...max).contains($0) {
+                return .success($0)
+            } else {
+                return .failure(ValidatorError.limitedRange)
+            }
+        }
+    }
+}
+
+public extension Validator {
+    static prefix func !<T> (_ validator: Validator<T>) -> Validator<T> {
+        return .init {
+            switch validator.validate($0) {
+            case .success:
+                return .failure(ValidatorError.shouldNotBeSuccess)
+            case .failure:
+                return .success($0)
+            }
+        }
+    }
+
+    static func &&<T> (lhs: Validator<T>, rhs: Validator<T>) -> Validator<T> {
+        return .init {
+            switch (lhs.validate($0), rhs.validate($0)) {
+            case (.success, .success):
+                return .success($0)
+            case (_, .failure(let error)):
+                return .failure(error)
+            case (.failure(let error), _):
+                return .failure(error)
+            }
+        }
+    }
+
+    static func ||<T> (lhs: Validator<T>, rhs: Validator<T>) -> Validator<T> {
+        return .init {
+            switch (lhs.validate($0), rhs.validate($0)) {
+            case (.success, .success):
+                return .success($0)
+            case (.success, .failure):
+                return .success($0)
+            case (.failure, .success):
+                return .success($0)
+            case (.failure, .failure):
+                return .failure(ValidatorError.doubleFailure)
+            }
+        }
+    }
+}
+
 //public extension Valid where Value: Numeric & Comparable {
 //    init(min: Value, max: Value, asserts: Bool = false) {
 //        self.init({ (min...max).contains($0) }, asserts: asserts, message: { "Error: \($0) not between \(min) and \(max)" })

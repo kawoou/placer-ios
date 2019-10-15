@@ -11,7 +11,7 @@ final class LoginCoordinator: Coordinator {
         case presentRegister
     }
 
-    func instanciate() -> LoginViewController {
+    func instantiate() -> LoginViewController {
         return container.resolve(LoginViewController.self)!
     }
     func coordinate(_ action: Action) -> [CoordinatorAction<LoginViewController>] {

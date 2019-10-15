@@ -8,15 +8,15 @@
 
 import UIKit
 
-final class AppCoordinator: WindowCoordinator {
+class AppCoordinator: WindowCoordinator {
 
     enum Action {
         case presentSplash
         case presentLogin
-        case presentMain
+        case presentMap
     }
 
-    func instanciate() -> UIWindow {
+    func instantiate() -> UIWindow {
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.makeKeyAndVisible()
         return window
@@ -34,10 +34,13 @@ final class AppCoordinator: WindowCoordinator {
                 .present(container.resolve(LoginCoordinator.self)!)
             ]
 
-        case .presentMain:
+        case .presentMap:
             return [
-                .present(container.resolve(MainTabBarCoordinator.self)!)
+                .present(container.resolve(PlaceCoordinator.self)!)
+//                .present(container.resolve(MapCoordinator.self)!)
             ]
         }
     }
+
+    required init() {}
 }

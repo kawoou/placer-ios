@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         /// Window
         window = appCoordinator.target
-        appCoordinator <- AppCoordinator.Action.presentMain
+        appCoordinator <- AppCoordinator.Action.presentMap
 
         return true
     }

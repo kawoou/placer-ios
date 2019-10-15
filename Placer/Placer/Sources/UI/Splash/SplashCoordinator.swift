@@ -9,7 +9,7 @@
 final class SplashCoordinator: Coordinator {
     enum Action {}
 
-    func instanciate() -> SplashViewController {
+    func instantiate() -> SplashViewController {
         return container.resolve(SplashViewController.self)!
     }
     func coordinate(_ action: Action) -> [CoordinatorAction<SplashViewController>] {}
