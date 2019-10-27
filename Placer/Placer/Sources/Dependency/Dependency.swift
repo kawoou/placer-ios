@@ -76,6 +76,17 @@ public let container = Container(parent: Service.container) { container in
         }
         .inObjectScope(.weak)
 
+    /// Main
+    container
+        .register(MainCoordinator.self) { _ in
+            return MainCoordinator()
+        }
+
+    container
+        .register(MainNavigationController.self) { _ in
+            return MainNavigationController()
+        }
+
     /// Map
     container
         .register(MapCoordinator.self) { _ in

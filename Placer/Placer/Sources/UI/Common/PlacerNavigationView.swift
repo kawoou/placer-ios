@@ -8,6 +8,7 @@
 
 import UIKit
 import Common
+import RxCocoa
 import RxSwift
 
 final class PlacerNavigationView: UIVisualEffectView {
@@ -29,7 +30,7 @@ final class PlacerNavigationView: UIVisualEffectView {
         label.textAlignment = .center
         return label
     }()
-    private lazy var backButton: UIButton = {
+    fileprivate lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(Asset.btnBack.image, for: .normal)
         button.tintColor = Asset.colorGray6.color
@@ -204,5 +205,11 @@ final class PlacerNavigationView: UIVisualEffectView {
 
         default: break
         }
+    }
+}
+
+extension Reactive where Base: PlacerNavigationView {
+    var tapBack: ControlEvent<Void> {
+        ControlEvent(events: base.backButton.rx.tap)
     }
 }

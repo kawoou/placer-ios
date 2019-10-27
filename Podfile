@@ -120,6 +120,7 @@ target 'Placer' do
   pod 'Crashlytics'
 
   # UI
+  pod 'Kingfisher'
   pod 'SnapKit'
 
   target 'PlacerTests' do

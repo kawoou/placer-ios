@@ -27,6 +27,7 @@ final class PlaceViewModel: ViewModel {
 
     struct Input {
         let setTab = PublishRelay<TabType>()
+        let back = PublishRelay<Void>()
     }
     struct Output {
         let sections = BehaviorRelay<[PlaceSection]>(value: [])
@@ -60,6 +61,12 @@ final class PlaceViewModel: ViewModel {
         input.setTab
             .bind(to: output.tab)
             .disposed(by: disposeBag)
+
+        input.back
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { () in
+                coordinator <- MainCoordinator.Action.popOne
+            })
 
         output.tab
             .flatMapLatest { _ in

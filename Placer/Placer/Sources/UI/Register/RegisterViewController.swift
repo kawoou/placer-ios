@@ -194,6 +194,8 @@ final class RegisterViewController: UIViewController {
 
         view.addSubview(submitButton)
 
+        view.addTapGestureRecognizerForDismissKeyboard()
+
         setupConstraints()
         bindEvents()
         bind(viewModel: viewModel)

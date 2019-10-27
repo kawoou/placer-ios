@@ -13,13 +13,15 @@ import RxSwift
 import RxKeyboard
 import SnapKit
 
-final class MapViewController: UINavigationController {
+final class MapViewController: UIViewController {
 
     // MARK: - Interface
 
     private lazy var mapView: MKMapView = {
         let view = MKMapView()
+        view.delegate = self
         view.showsUserLocation = true
+        view.register(PlaceAnnotationView.self, forAnnotationViewWithReuseIdentifier: "place")
         return view
     }()
 
@@ -214,12 +216,24 @@ final class MapViewController: UINavigationController {
             .filterNil()
             .drive(onNext: { [weak self] in
                 guard let ss = self else { return }
-                ss.mapView.setCenter(
-                    CLLocationCoordinate2D(
-                        latitude: $0.latitude,
-                        longitude: $0.longitude
-                    ),
-                    animated: true
+                let location = CLLocationCoordinate2D(
+                    latitude: $0.latitude,
+                    longitude: $0.longitude
+                )
+
+                ss.mapView.setCenter(location, animated: true)
+                ss.mapView.addAnnotation(
+                    PlaceAnnotation(
+                        coordinate: CLLocationCoordinate2D(
+                            latitude: $0.latitude,
+                            longitude: $0.longitude + 2
+                        ),
+                        title: "Test",
+                        subtitle: "Test",
+                        placeId: 1,
+                        imageUrl: "https://file.namu.moe/file/8bc9e381797334eb33da66e3ba501be19a84cc65093f53f8372a942bce0445d799dbcb99bd6f48cca013ceb0b5a36929",
+                        imageCount: 2
+                    )
                 )
             })
             .disposed(by: disposeBag)
@@ -287,6 +301,10 @@ final class MapViewController: UINavigationController {
 
     // MARK: - Lifecycle
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -318,5 +336,23 @@ final class MapViewController: UINavigationController {
     }
     deinit {
         logger.unload(self)
+    }
+}
+
+extension MapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let annotation = annotation as? PlaceAnnotation else { return nil }
+        guard let view = mapView.dequeueReusableAnnotationView(withIdentifier: "place", for: annotation) as? PlaceAnnotationView else {
+            return nil
+        }
+        view.annotation = annotation
+        return view
+    }
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation as? PlaceAnnotation else { return }
+        viewModel.input.selectPlace.accept(annotation.placeId)
+    }
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        print(mapView.region.center)
     }
 }

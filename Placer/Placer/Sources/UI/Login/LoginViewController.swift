@@ -143,6 +143,8 @@ final class LoginViewController: UIViewController {
             self.view.transform = CGAffineTransform(scaleX: 1, y: 1)
         }, completion: nil)
 
+        view.addTapGestureRecognizerForDismissKeyboard()
+
         setupConstraints()
         bind(viewModel: viewModel)
     }

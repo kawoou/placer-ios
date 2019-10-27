@@ -64,7 +64,10 @@ final class LoginViewModel: ViewModel {
             .withLatestFrom(inputStream)
             .map { String(data: try JSONEncoder().encode($0), encoding: .utf8)! }
             .debug()
-            .subscribe()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                coordinator <- AppCoordinator.Action.presentMain
+            })
             .disposed(by: disposeBag)
 
         input.register

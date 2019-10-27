@@ -102,6 +102,11 @@ final class PlaceViewController: FluentViewController {
             }
             .bind(to: viewModel.input.setTab)
             .disposed(by: disposeBag)
+
+        navigationView.rx.tapBack
+            .map { _ in }
+            .bind(to: viewModel.input.back)
+            .disposed(by: disposeBag)
     }
 
     // MARK: - Lifecycle
@@ -127,11 +132,8 @@ final class PlaceViewController: FluentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 
     init(viewModel: PlaceViewModel) {
@@ -141,5 +143,11 @@ final class PlaceViewController: FluentViewController {
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension PlaceViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

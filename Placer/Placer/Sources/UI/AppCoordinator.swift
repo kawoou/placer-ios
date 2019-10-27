@@ -13,7 +13,7 @@ class AppCoordinator: WindowCoordinator {
     enum Action {
         case presentSplash
         case presentLogin
-        case presentMap
+        case presentMain
     }
 
     func instantiate() -> UIWindow {
@@ -34,10 +34,11 @@ class AppCoordinator: WindowCoordinator {
                 .present(container.resolve(LoginCoordinator.self)!)
             ]
 
-        case .presentMap:
+        case .presentMain:
+            let coordinator = container.resolve(MainCoordinator.self)!
             return [
-                .present(container.resolve(PlaceCoordinator.self)!)
-//                .present(container.resolve(MapCoordinator.self)!)
+                .present(coordinator),
+                .perform(coordinator, action: .presentMap)
             ]
         }
     }

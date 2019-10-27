@@ -23,6 +23,7 @@ final class MainViewModel: ViewModel {
         let searchQuery = PublishRelay<String>()
         let add = PublishRelay<Void>()
         let setCurrentLocation = PublishRelay<Bool>()
+        let selectPlace = PublishRelay<Int>()
     }
     struct Output {
         let searchQuery = BehaviorRelay<String>(value: "")
@@ -92,6 +93,13 @@ final class MainViewModel: ViewModel {
             }
             .map { $0 }
             .bind(to: output.currentLocation)
+            .disposed(by: disposeBag)
+
+        input.selectPlace
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { placeId in
+                coordinator <- MainCoordinator.Action.pushPlace(placeId)
+            })
             .disposed(by: disposeBag)
     }
 }
