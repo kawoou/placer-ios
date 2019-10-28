@@ -9,7 +9,6 @@
 public struct Post: Codable {
     enum CodingKeys: String, CodingKey {
         case id
-        case writerId
         case writerNickname
         case imageUrl = "address"
         case content = "comment"
@@ -19,7 +18,6 @@ public struct Post: Codable {
     }
 
     public let id: Int
-    public let writerId: Int
     public let writerNickname: String
     public let imageUrl: String
     public let content: String?
@@ -27,9 +25,8 @@ public struct Post: Codable {
     public let isLiked: Bool
     public let createdAt: Date
 
-    public init(id: Int, writerId: Int, writerNickname: String, imageUrl: String, content: String?, likeCount: Int, isLiked: Bool, createdAt: Date) {
+    public init(id: Int, writerNickname: String, imageUrl: String, content: String?, likeCount: Int, isLiked: Bool, createdAt: Date) {
         self.id = id
-        self.writerId = writerId
         self.writerNickname = writerNickname
         self.imageUrl = imageUrl
         self.content = content

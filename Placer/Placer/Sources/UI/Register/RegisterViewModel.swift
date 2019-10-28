@@ -40,6 +40,7 @@ final class RegisterViewModel: ViewModel {
     // MARK: - Lifecycle
 
     init(
+        userService: UserService,
         coordinator: CoordinatorPerformable,
         input: Input = .init(),
         output: Output = .init()
@@ -65,6 +66,23 @@ final class RegisterViewModel: ViewModel {
         inputStream
             .map { $0.isValid() }
             .bind(to: output.isSubmitActive)
+            .disposed(by: disposeBag)
+
+        input.submit
+            .withLatestFrom(inputStream)
+            .filter { $0.isValid() }
+            .flatMapLatest {
+                userService.register(request: $0)
+                    .asObservable()
+                    .catchError { _ in
+                        coordinator <- AppCoordinator.Action.showAlert(title: "회원가입", message: "회원가입에 실패했습니다!")
+                        return .empty()
+                    }
+            }
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { _ in
+                coordinator <- RegisterCoordinator.Action.dismiss
+            })
             .disposed(by: disposeBag)
 
         input.close

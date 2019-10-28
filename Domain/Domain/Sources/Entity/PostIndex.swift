@@ -7,7 +7,6 @@
 //
 
 public struct PostIndex: Codable {
-    public let id: Int
     public let postId: Int
     public let x: Int
     public let y: Int

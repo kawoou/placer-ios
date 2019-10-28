@@ -88,15 +88,21 @@ extension CoordinatorAction {
 }
 
 extension CoordinatorAction where Target: UIWindow {
-    static func present<C: Coordinator>(_ coordinator: C) -> CoordinatorAction {
+    static func move<C: Coordinator>(_ coordinator: C) -> CoordinatorAction {
         return CoordinatorAction { (parent, target) in
             coordinator.parent = parent
             target.rootViewController = coordinator.target
         }
     }
 
-    static func present<C: Coordinator>(_ type: C.Type) -> CoordinatorAction {
-        return present(C())
+    static func move<C: Coordinator>(_ type: C.Type) -> CoordinatorAction {
+        return move(C())
+    }
+
+    static func present<V: UIViewController>(_ viewController: V, animated: Bool = true) -> CoordinatorAction {
+        return CoordinatorAction { (_, target) in
+            target.rootViewController?.present(viewController, animated: animated)
+        }
     }
 }
 
@@ -110,6 +116,12 @@ extension CoordinatorAction where Target: UIViewController {
 
     static func present<C: Coordinator>(_ type: C.Type, animated: Bool = true) -> CoordinatorAction {
         return present(C(), animated: animated)
+    }
+
+    static func present<V: UIViewController>(_ viewController: V, animated: Bool = true) -> CoordinatorAction {
+        return CoordinatorAction { (_, target) in
+            target.present(viewController, animated: animated)
+        }
     }
 
     static func dismiss(animated: Bool = true) -> CoordinatorAction {

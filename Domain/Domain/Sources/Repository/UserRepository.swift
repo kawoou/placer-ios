@@ -11,4 +11,5 @@ import RxSwift
 
 public protocol UserRepository {
     func login(request: LoginRequest) -> Single<User>
+    func register(request: RegisterRequest) -> Single<Bool>
 }

@@ -24,6 +24,7 @@
 		8BC97FC219B31AEC0FAD0A423F73D066 /* Validable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED1FFAE03432B9102C0115D79B1630A /* Validable.swift */; };
 		8E0A11225172DEE4089CFC078151BB9C /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E0E494E2CD31957C4E0CB85867DA64A /* Common.framework */; };
 		9835D3F0200C6741996F3EC157E6EC06 /* Pods_Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60E5EAAE2BC0FD6DF85C54F45E0C7FCE /* Pods_Common.framework */; };
+		A28A301629F8F3697D59C235EF3B5A0C /* UserServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBA89B51AA6023F49FA0E34C849D205 /* UserServiceError.swift */; };
 		BC9AD7790AE083644BD2340CF23DEA0F /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BA80AFF4CDB6B7A81DFCA8D8BC9FD6 /* NetworkConstant.swift */; };
 		D52891BE055473675C970E3F1168CB0E /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB4468C10B23A77CBC1C2155856627 /* LoginResponse.swift */; };
 		DDE98D934EE84D3B129982202FA70EE6 /* RegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0E5AF05DB4B82482AF06B0A31A0058 /* RegisterRequest.swift */; };
@@ -66,6 +67,7 @@
 		ED0E5AF05DB4B82482AF06B0A31A0058 /* RegisterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRequest.swift; sourceTree = "<group>"; };
 		ED255824F91949D81196C0EA506A260D /* Pods-CommonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonTests.release.xcconfig"; path = "Target Support Files/Pods-CommonTests/Pods-CommonTests.release.xcconfig"; sourceTree = "<group>"; };
 		EED1FFAE03432B9102C0115D79B1630A /* Validable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validable.swift; sourceTree = "<group>"; };
+		EFBA89B51AA6023F49FA0E34C849D205 /* UserServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceError.swift; sourceTree = "<group>"; };
 		F32AB3A2E5E33210F25D064907B221D3 /* CommonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,16 +206,9 @@
 			children = (
 				77673FB00890BABEEC1B4409660D48AC /* AbstractError.swift */,
 				7F1C0BAC55C7FFA20D11B797A62C122C /* CommonError.swift */,
+				EFBA89B51AA6023F49FA0E34C849D205 /* UserServiceError.swift */,
 			);
 			path = Error;
-			sourceTree = "<group>";
-		};
-		E14B7DB86140DF7C7C76F8F072C6C8AF /* Permission */ = {
-			isa = PBXGroup;
-			children = (
-				024F1C8DB33D925AE893298FFAC96CE6 /* Permission.swift */,
-			);
-			path = Permission;
 			sourceTree = "<group>";
 		};
 		AAD161BAA3225B1CE95B2E7C9648E8B3 /* Common */ = {
@@ -260,6 +255,14 @@
 				372035BE00E4C15711F04636F7194D8F /* Pods */,
 				46C1844AC75CCCA214344893AF81F198 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		E14B7DB86140DF7C7C76F8F072C6C8AF /* Permission */ = {
+			isa = PBXGroup;
+			children = (
+				024F1C8DB33D925AE893298FFAC96CE6 /* Permission.swift */,
+			);
+			path = Permission;
 			sourceTree = "<group>";
 		};
 		EDF1E12E9B0D440982EC3626FA3BEB68 /* Sources */ = {
@@ -471,6 +474,7 @@
 				1AA94504DBDD5CF4F144C712E36E144D /* Permission.swift in Sources */,
 				DDE98D934EE84D3B129982202FA70EE6 /* RegisterRequest.swift in Sources */,
 				5442339E3C51E0957EFB0DE0798DB621 /* SafeLayoutMargin.swift in Sources */,
+				A28A301629F8F3697D59C235EF3B5A0C /* UserServiceError.swift in Sources */,
 				2951FC696D61DF2471E260A173D4275C /* Valid.swift in Sources */,
 				02DD0C14A3191471D2C5BC4360099750 /* ValidError.swift in Sources */,
 				8BC97FC219B31AEC0FAD0A423F73D066 /* Validable.swift in Sources */,

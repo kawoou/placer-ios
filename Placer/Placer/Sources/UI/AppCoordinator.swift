@@ -14,6 +14,8 @@ class AppCoordinator: WindowCoordinator {
         case presentSplash
         case presentLogin
         case presentMain
+
+        case showAlert(title: String? = nil, message: String)
     }
 
     func instantiate() -> UIWindow {
@@ -26,20 +28,25 @@ class AppCoordinator: WindowCoordinator {
         switch action {
         case .presentSplash:
             return [
-                .present(container.resolve(SplashCoordinator.self)!)
+                .move(container.resolve(SplashCoordinator.self)!)
             ]
 
         case .presentLogin:
             return [
-                .present(container.resolve(LoginCoordinator.self)!)
+                .move(container.resolve(LoginCoordinator.self)!)
             ]
 
         case .presentMain:
             let coordinator = container.resolve(MainCoordinator.self)!
             return [
-                .present(coordinator),
+                .move(coordinator),
                 .perform(coordinator, action: .presentMap)
             ]
+
+        case let .showAlert(title: title, message: message):
+            let viewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            viewController.addAction(UIAlertAction(title: "확인", style: .cancel, handler: nil))
+            return [.present(viewController)]
         }
     }
 

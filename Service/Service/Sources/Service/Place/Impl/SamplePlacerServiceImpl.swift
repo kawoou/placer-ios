@@ -16,7 +16,6 @@ final class SamplePlaceServiceImpl: PlaceService {
         return .just((0..<50).map {
             Post(
                 id: $0,
-                writerId: 1,
                 writerNickname: "James Kim",
                 imageUrl: "http://img.hani.co.kr/imgdb/resize/2018/0723/00501640_20180723.JPG",
                 content: "가끔 고라니가 출몰합니다.. 저렇게 빤히 보고 있을 때면 대체 무슨 생각을 하고 있는건지;;",

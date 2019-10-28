@@ -39,6 +39,7 @@ final class LoginViewModel: ViewModel {
     // MARK: - Lifecycle
 
     init(
+        userService: UserService,
         coordinator: CoordinatorPerformable,
         input: Input = .init(),
         output: Output = .init()
@@ -52,7 +53,6 @@ final class LoginViewModel: ViewModel {
                 input.email,
                 input.password
             ) { LoginRequest(email: $0, password: $1) }
-            .filter { $0.isValid() }
             .share(replay: 1, scope: .forever)
 
         inputStream
@@ -62,8 +62,15 @@ final class LoginViewModel: ViewModel {
 
         input.submit
             .withLatestFrom(inputStream)
-            .map { String(data: try JSONEncoder().encode($0), encoding: .utf8)! }
-            .debug()
+            .filter { $0.isValid() }
+            .flatMapLatest {
+                userService.login(request: $0)
+                    .asObservable()
+                    .catchError { _ in
+                        coordinator <- AppCoordinator.Action.showAlert(title: "로그인", message: "이메일 혹은 비밀번호가 잘못되었습니다!")
+                        return .empty()
+                    }
+            }
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { _ in
                 coordinator <- AppCoordinator.Action.presentMain

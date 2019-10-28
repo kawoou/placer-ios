@@ -22,14 +22,37 @@ final class UserServiceImpl: UserService {
 
     // MARK: - Public
 
-    func login(email: String, password: String) -> Single<User> {
+    func login(request: LoginRequest) -> Single<User> {
         return userRepository
-            .login(request: LoginRequest(email: email, password: password))
+            .login(request: request)
             .do(onSuccess: { [weak self] user in
                 self?.userState.accept(.loggedIn(user))
             }, onError: { [weak self] _ in
                 self?.userState.accept(.loggedOut)
             })
+            .catchError { _ in
+                .error(UserServiceError.failedToLogin)
+            }
+    }
+
+    func register(request: RegisterRequest) -> Single<User> {
+        return userRepository
+            .register(request: request)
+            .flatMap { [weak self] status in
+                guard let ss = self else { return .error(CommonError.nilSelf) }
+                guard status else {
+                    return .error(UserServiceError.failedToRegister)
+                }
+
+                let login = LoginRequest(
+                    email: request.email ?? "",
+                    password: request.password ?? ""
+                )
+                return ss.login(request: login)
+                    .catchError { _ in
+                        .error(UserServiceError.failedToRegister)
+                    }
+            }
     }
 
     init(

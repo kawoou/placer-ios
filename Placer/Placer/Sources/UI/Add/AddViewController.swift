@@ -132,6 +132,7 @@ final class AddViewController: UIViewController {
     private func bind(viewModel: AddViewModel) {
         RxKeyboard.instance.visibleHeight
             .asObservable()
+            .skip(1)
             .flatMapAnimate(view, duration: 0.35) { [weak self] (view, height) in
                 self?.descriptionBottomConstraint?.update(inset: height + 40)
                 view.layoutIfNeeded()
@@ -142,6 +143,7 @@ final class AddViewController: UIViewController {
         RxKeyboard.instance.isHidden
             .distinctUntilChanged()
             .asObservable()
+            .skip(1)
             .map { $0 ? 0 : 200 }
             .flatMapAnimate(scrollView, duration: 0.35) {
                 $0.contentOffset.y = $1

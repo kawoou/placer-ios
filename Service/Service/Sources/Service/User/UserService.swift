@@ -13,5 +13,6 @@ import RxSwift
 public protocol UserService {
     var userState: BehaviorObservable<UserState> { get }
 
-    func login(email: String, password: String) -> Single<User>
+    func login(request: LoginRequest) -> Single<User>
+    func register(request: RegisterRequest) -> Single<User>
 }

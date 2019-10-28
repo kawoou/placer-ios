@@ -8,6 +8,11 @@
 
 public struct LoginRequest: Encodable, Validable {
 
+    enum CodingKeys: String, CodingKey {
+        case email = "mail"
+        case password
+    }
+
     // MARK: - Property
 
     public var target: [Validable] {

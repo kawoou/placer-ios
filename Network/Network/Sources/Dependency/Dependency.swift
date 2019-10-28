@@ -10,7 +10,11 @@ import Moya
 import Swinject
 
 public let container = Container { container in
-    container.register(MoyaProvider<PlacerAPI>.self) { resolver in
-        return MoyaProvider<PlacerAPI>()
+    container.register(MoyaProvider<UserAPI>.self) { resolver in
+        return MoyaProvider<UserAPI>()
+    }
+    container.register(MoyaProvider<PostAPI>.self) { resolver in
+        return MoyaProvider<PostAPI>()
+
     }
 }

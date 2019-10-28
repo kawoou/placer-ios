@@ -8,6 +8,8 @@
 
 public protocol Validable {
     var target: [Validable] { get }
+    
+    func isValid() -> Bool
 }
 
 public extension Validable {

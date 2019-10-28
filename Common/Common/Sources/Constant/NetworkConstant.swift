@@ -7,7 +7,7 @@
 //
 
 public struct NetworkConstant {
-    public static let baseURL = ""
+    public static let baseURL = "http://ec2-13-209-4-104.ap-northeast-2.compute.amazonaws.com:8080/placer"
 
     private init() {}
 }

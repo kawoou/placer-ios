@@ -171,6 +171,10 @@ final class RegisterViewController: UIViewController {
         passwordRetypeField.rx.text.orEmpty
             .bind(to: viewModel.input.password2)
             .disposed(by: disposeBag)
+
+        submitButton.rx.tap
+            .bind(to: viewModel.input.submit)
+            .disposed(by: disposeBag)
     }
 
     // MARK: - Lifecycle

@@ -43,8 +43,12 @@ public let container = Container(parent: Service.container) { container in
 
     container
         .register(LoginViewModel.self) { resolver in
+            let userService = resolver.resolve(UserService.self)!
             let coordinator = resolver.resolve(LoginCoordinator.self)!
-            return LoginViewModel(coordinator: coordinator)
+            return LoginViewModel(
+                userService: userService,
+                coordinator: coordinator
+            )
         }
         .inObjectScope(.weak)
 
@@ -64,8 +68,12 @@ public let container = Container(parent: Service.container) { container in
 
     container
         .register(RegisterViewModel.self) { resolver in
+            let userService = resolver.resolve(UserService.self)!
             let coordinator = resolver.resolve(RegisterCoordinator.self)!
-            return RegisterViewModel(coordinator: coordinator)
+            return RegisterViewModel(
+                userService: userService,
+                coordinator: coordinator
+            )
         }
         .inObjectScope(.weak)
 
