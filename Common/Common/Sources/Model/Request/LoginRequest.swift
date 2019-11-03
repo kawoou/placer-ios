@@ -6,7 +6,7 @@
 //  Copyright © 2019 kawoou. All rights reserved.
 //
 
-public struct LoginRequest: Encodable, Validable {
+public struct LoginRequest: Codable, Validable {
 
     enum CodingKeys: String, CodingKey {
         case email = "mail"
@@ -30,5 +30,10 @@ public struct LoginRequest: Encodable, Validable {
     public init(email: String, password: String) {
         self.email = email
         self.password = password
+    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        email = try container.decode(String.self, forKey: .email)
+        password = try container.decode(String.self, forKey: .password)
     }
 }

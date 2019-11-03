@@ -34,6 +34,7 @@ final class SplashViewModel: ViewModel {
     // MARK: - Lifecycle
 
     init(
+        userService: UserService,
         coordinator: CoordinatorPerformable,
         input: Input = .init(),
         output: Output = .init()
@@ -42,10 +43,15 @@ final class SplashViewModel: ViewModel {
         self.input = input
         self.output = output
 
-        Observable.just(Void())
-            .delay(.seconds(1), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { () in
-                coordinator <- AppCoordinator.Action.presentLogin
+        input.initial
+            .flatMap { userService.loginIfNeeded() }
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { user in
+                if user != nil {
+                    coordinator <- AppCoordinator.Action.presentMain
+                } else {
+                    coordinator <- AppCoordinator.Action.presentLogin
+                }
             })
             .disposed(by: disposeBag)
     }

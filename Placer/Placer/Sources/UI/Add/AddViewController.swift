@@ -12,6 +12,7 @@ import Common
 import SnapKit
 import RxSwift
 import RxKeyboard
+import TLPhotoPicker
 
 final class AddViewController: UIViewController {
 
@@ -51,6 +52,14 @@ final class AddViewController: UIViewController {
         return view
     }()
 
+    private lazy var photoView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 14
+        view.isHidden = true
+        return view
+    }()
     private lazy var photoSelectButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(Asset.btnAdd.image, for: .normal)
@@ -114,6 +123,10 @@ final class AddViewController: UIViewController {
             maker.height.equalToSuperview()
             maker.leading.trailing.equalToSuperview().inset(20)
         }
+        photoView.snp.makeConstraints { maker in
+            maker.top.bottom.equalToSuperview()
+            maker.width.equalTo(160)
+        }
         photoSelectButton.snp.makeConstraints { maker in
             maker.top.bottom.equalToSuperview()
             maker.width.equalTo(160)
@@ -152,8 +165,72 @@ final class AddViewController: UIViewController {
             .disposed(by: disposeBag)
 
         /// Output
+        viewModel.output.photo
+            .map { $0?.fullResolutionImage }
+            .filterNil()
+            .bind(to: photoView.rx.image)
+            .disposed(by: disposeBag)
+
+        viewModel.output.photo
+            .map { $0 != nil }
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] state in
+                self?.photoView.isHidden = !state
+                self?.photoSelectButton.isHidden = state
+                self?.photoStack.layoutIfNeeded()
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.output.photoExif
+            .filterNil()
+            .map { exif -> MKPointAnnotation in
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = CLLocationCoordinate2D(latitude: exif.latitude, longitude: exif.longitude)
+                return annotation
+            }
+            .observeOn(MainScheduler.instance)
+            .scan((nil, nil)) { ($0.1, $1) }
+            .subscribe(onNext: { [weak self] (old, new) in
+                guard let ss = self else { return }
+                if let old = old {
+                    ss.mapView.removeAnnotation(old)
+                }
+                if let new = new {
+                    ss.mapView.addAnnotation(new)
+                }
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.output.photoExif
+            .filterNil()
+            .map { CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude) }
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                guard let ss = self else { return }
+
+                let region = MKCoordinateRegion(center: $0, latitudinalMeters: 500, longitudinalMeters: 500)
+                let adjustRegion = ss.mapView.regionThatFits(region)
+                ss.mapView.setRegion(adjustRegion, animated: true)
+            })
+            .disposed(by: disposeBag)
 
         /// Input
+        photoSelectButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                guard let ss = self else { return }
+                let viewController = TLPhotosPickerViewController()
+                viewController.delegate = ss
+                viewController.configure.allowedLivePhotos = false
+                viewController.configure.allowedVideo = false
+                viewController.configure.allowedVideoRecording = false
+                viewController.configure.allowedAlbumCloudShared = false
+                viewController.configure.mediaType = .image
+                viewController.configure.usedCameraButton = false
+                return ss.present(viewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+
         closeBarButton.rx.tap
             .asObservable()
             .take(1)
@@ -178,6 +255,7 @@ final class AddViewController: UIViewController {
         scrollView.addSubview(mapView)
         scrollView.addSubview(photoLabel)
 
+        photoStack.addArrangedSubview(photoView)
         photoStack.addArrangedSubview(photoSelectButton)
         photoList.addSubview(photoStack)
         scrollView.addSubview(photoList)
@@ -200,5 +278,12 @@ final class AddViewController: UIViewController {
     }
     deinit {
         logger.debug("deinit: AddViewController")
+    }
+}
+
+extension AddViewController: TLPhotosPickerViewControllerDelegate {
+    func dismissPhotoPicker(withTLPHAssets: [TLPHAsset]) {
+        guard let asset = withTLPHAssets.first else { return }
+        viewModel.input.selectPhoto.accept(asset)
     }
 }

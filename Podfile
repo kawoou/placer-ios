@@ -122,6 +122,7 @@ target 'Placer' do
   # UI
   pod 'Kingfisher'
   pod 'SnapKit'
+  pod 'TLPhotoPicker'
 
   target 'PlacerTests' do
     inherit! :search_paths

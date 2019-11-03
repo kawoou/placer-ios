@@ -20,4 +20,7 @@ public let container = Container(parent: Domain.container) { container in
     container.register(PlaceService.self) { _ in
         return SamplePlaceServiceImpl()
     }
+    container.register(PhotoService.self) { _ in
+        return PhotoServiceImpl()
+    }
 }

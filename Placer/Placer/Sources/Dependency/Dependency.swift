@@ -22,8 +22,12 @@ public let container = Container(parent: Service.container) { container in
 
     container
         .register(SplashViewModel.self) { resolver in
+            let userService = resolver.resolve(UserService.self)!
             let coordinator = resolver.resolve(SplashCoordinator.self)!
-            return SplashViewModel(coordinator: coordinator)
+            return SplashViewModel(
+                userService: userService,
+                coordinator: coordinator
+            )
         }
         .inObjectScope(.weak)
 
@@ -155,8 +159,12 @@ public let container = Container(parent: Service.container) { container in
 
     container
         .register(AddViewModel.self) { resolver in
+            let photoService = resolver.resolve(PhotoService.self)!
             let coordinator = resolver.resolve(AddCoordinator.self)!
-            return AddViewModel(coordinator: coordinator)
+            return AddViewModel(
+                photoService: photoService,
+                coordinator: coordinator
+            )
         }
         .inObjectScope(.weak)
 

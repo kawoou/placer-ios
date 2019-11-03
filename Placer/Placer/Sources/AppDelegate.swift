@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         /// Window
         window = appCoordinator.target
-        appCoordinator <- AppCoordinator.Action.presentLogin
+        appCoordinator <- AppCoordinator.Action.presentSplash
 
         return true
     }

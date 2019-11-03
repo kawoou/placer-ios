@@ -10,10 +10,13 @@
 		002F58C05C65CB061BEC4B089810083B /* Pods_ServiceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7D1F4DE1BF73EF818C1A63AA576F9C7 /* Pods_ServiceTests.framework */; };
 		11AB0E62FBA2B2A72D10ADD11E72C5FD /* UserServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A735E62F75E7601415A62529D6E23 /* UserServiceImpl.swift */; };
 		22B2B1882CBDD00DC605946B8D6D8357 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D9363BB99FD42D48923D4FA18C7285 /* ServiceTests.swift */; };
+		505F751649EC62239C51F767C4A63695 /* PhotoServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128C924B779D5ADEE01D8FC30ADF3B18 /* PhotoServiceImpl.swift */; };
 		50BA14A27F5CC0DCE654BDC325EE982F /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675EF5C681E518255DC156FF602EC7CC /* LocationService.swift */; };
 		540C421A23CFF985D661EF35801FE6AA /* Service.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FC65A89A323D8CD1BD0B23D0E37F428 /* Service.framework */; };
+		6302AA0BF7562CE08BEE78BE6CA439C9 /* PhotoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363490C77610C76B51D62ACF28CC89F5 /* PhotoService.swift */; };
 		6415F41D8FF1873817FD21E2238E9183 /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9023C815450BE832149A58FA6E1BCD5 /* Dependency.swift */; };
 		67B8B4FE470BD7F019CA85FA859DE154 /* LocationServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B0700D76EDDF3BF732901777F2094B /* LocationServiceImpl.swift */; };
+		6E3313264950120F1D73A8F252D7207D /* PhotoExif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1372969476DE431C8A07A6CB6643A8 /* PhotoExif.swift */; };
 		709D72C3DE6F31E24748B776F3199AB7 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4471C698793C1FA70B11A273990EBE24 /* Domain.framework */; };
 		802781083A97A24806F47DFFB82D0104 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85396B4B57E6B342186F0C012CEED71A /* UserState.swift */; };
 		857C620D89DACF24A6F29EEAC393129F /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC19A98BA6CB249F39D3DEC2D21C58C3 /* Common.framework */; };
@@ -39,13 +42,16 @@
 		0CDED40FAD64FAAA96511A85CE097BDA /* Pods-Service.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Service.debug.xcconfig"; path = "Target Support Files/Pods-Service/Pods-Service.debug.xcconfig"; sourceTree = "<group>"; };
 		0FC65A89A323D8CD1BD0B23D0E37F428 /* Service.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Service.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		120C97D51537ADCA6DD5F3383FE8FBF1 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		128C924B779D5ADEE01D8FC30ADF3B18 /* PhotoServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoServiceImpl.swift; sourceTree = "<group>"; };
 		15A1B3B1D098F43A6B34753A286F9289 /* SamplePlacerServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePlacerServiceImpl.swift; sourceTree = "<group>"; };
 		16B95AE51EC6EF364D28298E6906C262 /* Pods_Service.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Service.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E5ED3318FB937C7370E3346051E9A8 /* Pods-ServiceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceTests.release.xcconfig"; path = "Target Support Files/Pods-ServiceTests/Pods-ServiceTests.release.xcconfig"; sourceTree = "<group>"; };
+		363490C77610C76B51D62ACF28CC89F5 /* PhotoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoService.swift; sourceTree = "<group>"; };
 		3E23E1082F4D6E2E989C6939ECB55D0B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4471C698793C1FA70B11A273990EBE24 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		571A5333B6DDC188B490AD2E05EBD4C9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		675EF5C681E518255DC156FF602EC7CC /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		6B1372969476DE431C8A07A6CB6643A8 /* PhotoExif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoExif.swift; sourceTree = "<group>"; };
 		6DAACE39BFBCC6B01BDDA333D22CB8C5 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		85396B4B57E6B342186F0C012CEED71A /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 		91D56D6BB14D642DE82CF76E7A7C1140 /* Pods-ServiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServiceTests.debug.xcconfig"; path = "Target Support Files/Pods-ServiceTests/Pods-ServiceTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -85,6 +91,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02DED5D0FC41B4592071102D12BB6D82 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				DDE6CCE2FB78A913BB7BCDA3D9E578B1 /* Impl */,
+				5A67E05AC7FDA83685CF75C5E8C68FE5 /* Model */,
+				675EF5C681E518255DC156FF602EC7CC /* LocationService.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
 		152CFB29FBFEEB93471611743DDF36A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,12 +127,29 @@
 			path = Dependency;
 			sourceTree = "<group>";
 		};
+		368646A19A8AE4A4B4089CE69848A8DA /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				99FD11EEB7CE765BD5ED26541928EAD7 /* Impl */,
+				FAED4F82CB9C45350B827A437E6CE3BF /* PlaceService.swift */,
+			);
+			path = Place;
+			sourceTree = "<group>";
+		};
 		4CB51F5772CC51A2A068F3DC7B9308F9 /* Impl */ = {
 			isa = PBXGroup;
 			children = (
 				F45A735E62F75E7601415A62529D6E23 /* UserServiceImpl.swift */,
 			);
 			path = Impl;
+			sourceTree = "<group>";
+		};
+		5A67E05AC7FDA83685CF75C5E8C68FE5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6DAACE39BFBCC6B01BDDA333D22CB8C5 /* Location.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		6FDC016D415C949412623EF0E393AAFC /* Pods */ = {
@@ -187,47 +220,38 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		02DED5D0FC41B4592071102D12BB6D82 /* Location */ = {
-			isa = PBXGroup;
-			children = (
-				DDE6CCE2FB78A913BB7BCDA3D9E578B1 /* Impl */,
-				5A67E05AC7FDA83685CF75C5E8C68FE5 /* Model */,
-				675EF5C681E518255DC156FF602EC7CC /* LocationService.swift */,
-			);
-			path = Location;
-			sourceTree = "<group>";
-		};
-		5A67E05AC7FDA83685CF75C5E8C68FE5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				6DAACE39BFBCC6B01BDDA333D22CB8C5 /* Location.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		DDE6CCE2FB78A913BB7BCDA3D9E578B1 /* Impl */ = {
-			isa = PBXGroup;
-			children = (
-				E5B0700D76EDDF3BF732901777F2094B /* LocationServiceImpl.swift */,
-			);
-			path = Impl;
-			sourceTree = "<group>";
-		};
-		368646A19A8AE4A4B4089CE69848A8DA /* Place */ = {
-			isa = PBXGroup;
-			children = (
-				99FD11EEB7CE765BD5ED26541928EAD7 /* Impl */,
-				FAED4F82CB9C45350B827A437E6CE3BF /* PlaceService.swift */,
-			);
-			path = Place;
-			sourceTree = "<group>";
-		};
 		99FD11EEB7CE765BD5ED26541928EAD7 /* Impl */ = {
 			isa = PBXGroup;
 			children = (
 				15A1B3B1D098F43A6B34753A286F9289 /* SamplePlacerServiceImpl.swift */,
 			);
 			path = Impl;
+			sourceTree = "<group>";
+		};
+		B46E6FC30D821A7897CA3B8BC3888430 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				A27742822CC41A72DF54292A08A70A07 /* Impl */,
+				14A330E4E8947FEF261FF8EE3F9C9989 /* Model */,
+				363490C77610C76B51D62ACF28CC89F5 /* PhotoService.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		A27742822CC41A72DF54292A08A70A07 /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				128C924B779D5ADEE01D8FC30ADF3B18 /* PhotoServiceImpl.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		14A330E4E8947FEF261FF8EE3F9C9989 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6B1372969476DE431C8A07A6CB6643A8 /* PhotoExif.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		BE8FDF32A56185B553E8717EBA073DF1 /* User */ = {
@@ -244,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				02DED5D0FC41B4592071102D12BB6D82 /* Location */,
+				B46E6FC30D821A7897CA3B8BC3888430 /* Photo */,
 				368646A19A8AE4A4B4089CE69848A8DA /* Place */,
 				BE8FDF32A56185B553E8717EBA073DF1 /* User */,
 			);
@@ -258,6 +283,14 @@
 				B7CF9D7D3798255A5029786A10FC92CE /* Service.h */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		DDE6CCE2FB78A913BB7BCDA3D9E578B1 /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				E5B0700D76EDDF3BF732901777F2094B /* LocationServiceImpl.swift */,
+			);
+			path = Impl;
 			sourceTree = "<group>";
 		};
 		F35CFDAA423A8477AFC86F15ABFE8E2E /* Supporting Files */ = {
@@ -456,6 +489,9 @@
 				F993461002A55149DEAD8A079EC27CE2 /* Location.swift in Sources */,
 				50BA14A27F5CC0DCE654BDC325EE982F /* LocationService.swift in Sources */,
 				67B8B4FE470BD7F019CA85FA859DE154 /* LocationServiceImpl.swift in Sources */,
+				6E3313264950120F1D73A8F252D7207D /* PhotoExif.swift in Sources */,
+				6302AA0BF7562CE08BEE78BE6CA439C9 /* PhotoService.swift in Sources */,
+				505F751649EC62239C51F767C4A63695 /* PhotoServiceImpl.swift in Sources */,
 				F77ADF9A66D0D0D2C80443A24C47DB6C /* PlaceService.swift in Sources */,
 				B52FA57AD0685BAA31797AE24AAE20B5 /* SamplePlacerServiceImpl.swift in Sources */,
 				ECD0DFE89EDE63C2BE02DEF09BB2FC17 /* UserService.swift in Sources */,

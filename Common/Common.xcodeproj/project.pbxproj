@@ -28,6 +28,7 @@
 		BC9AD7790AE083644BD2340CF23DEA0F /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BA80AFF4CDB6B7A81DFCA8D8BC9FD6 /* NetworkConstant.swift */; };
 		D52891BE055473675C970E3F1168CB0E /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB4468C10B23A77CBC1C2155856627 /* LoginResponse.swift */; };
 		DDE98D934EE84D3B129982202FA70EE6 /* RegisterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0E5AF05DB4B82482AF06B0A31A0058 /* RegisterRequest.swift */; };
+		F856C835F51F64CBAB8CC2F283AE72FE /* PhotoServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5E63DFEA32F5FA8B3AAA00FDF329BE /* PhotoServiceError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		945DBD7B688F3E624A8728E870676EB7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A68D9E18D95CC52BCBCB0275DA35C484 /* BehaviorObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BehaviorObservable.swift; sourceTree = "<group>"; };
 		B90DF0E4392CB12BCDBB79966AB0565E /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		BE5E63DFEA32F5FA8B3AAA00FDF329BE /* PhotoServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoServiceError.swift; sourceTree = "<group>"; };
 		C60EB34FCA3349B5D9C8C12E3BD8E989 /* Pods_CommonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10609994E9B3A6D185D57FA9B27F82C /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		E669ACB6F6A77BECDCF070D84E8BC8CC /* LoggerConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerConstant.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			children = (
 				77673FB00890BABEEC1B4409660D48AC /* AbstractError.swift */,
 				7F1C0BAC55C7FFA20D11B797A62C122C /* CommonError.swift */,
+				BE5E63DFEA32F5FA8B3AAA00FDF329BE /* PhotoServiceError.swift */,
 				EFBA89B51AA6023F49FA0E34C849D205 /* UserServiceError.swift */,
 			);
 			path = Error;
@@ -472,6 +475,7 @@
 				D52891BE055473675C970E3F1168CB0E /* LoginResponse.swift in Sources */,
 				BC9AD7790AE083644BD2340CF23DEA0F /* NetworkConstant.swift in Sources */,
 				1AA94504DBDD5CF4F144C712E36E144D /* Permission.swift in Sources */,
+				F856C835F51F64CBAB8CC2F283AE72FE /* PhotoServiceError.swift in Sources */,
 				DDE98D934EE84D3B129982202FA70EE6 /* RegisterRequest.swift in Sources */,
 				5442339E3C51E0957EFB0DE0798DB621 /* SafeLayoutMargin.swift in Sources */,
 				A28A301629F8F3697D59C235EF3B5A0C /* UserServiceError.swift in Sources */,
