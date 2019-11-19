@@ -11,10 +11,17 @@ import RxSwift
 
 final class PostImageCell: UITableViewCell {
 
+    // MARK: - Constant
+
+    private struct Constant {
+        static var imageDocumentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("localImage", isDirectory: true)
+    }
+
     // MARK: - Interface
 
     private lazy var placeImageView: FluentImageView = {
-        let view = FluentImageView(image: Asset.noru.image)
+        let view = FluentImageView(image: nil)
         view.blurOffset = CGPoint(x: 0, y: 45)
         view.blurScale = 1
         view.blurSize = 20
@@ -37,7 +44,14 @@ final class PostImageCell: UITableViewCell {
     // MARK: - Public
 
     func bind(viewModel: PostCellModel) {
+        placeImageView.image = nil
 
+        guard !viewModel.post.imageUrl.hasPrefix("http") else { return }
+
+        let url = Constant.imageDocumentPath.appendingPathComponent(viewModel.post.imageUrl)
+        guard let data = try? Data(contentsOf: url) else { return }
+        guard let image = UIImage(data: data) else { return }
+        placeImageView.image = image
     }
 
     // MARK: - Lifecycle

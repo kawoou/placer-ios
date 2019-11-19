@@ -351,6 +351,12 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let annotation = view.annotation as? PlaceAnnotation else { return }
         viewModel.input.selectPlace.accept(annotation.placeId)
+
+        DispatchQueue.main.async {
+            for item in mapView.selectedAnnotations {
+                mapView.deselectAnnotation(item, animated: false)
+            }
+        }
     }
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         print(mapView.region.center)

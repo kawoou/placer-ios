@@ -61,4 +61,8 @@ extension UserAPI: TargetType {
     public var headers: [String : String]? {
         return [:]
     }
+
+    public var validationType: ValidationType {
+        return .successCodes
+    }
 }

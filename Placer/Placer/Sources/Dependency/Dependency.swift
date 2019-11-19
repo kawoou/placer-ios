@@ -133,11 +133,11 @@ public let container = Container(parent: Service.container) { container in
 
     container
         .register(PlaceViewModel.self) { (resolver, placeId: Int) in
-            let placeService = resolver.resolve(PlaceService.self)!
+            let postService = resolver.resolve(PostService.self)!
             let coordinator = resolver.resolve(PlaceCoordinator.self, argument: placeId)!
             return PlaceViewModel(
                 placeId: placeId,
-                placeService: placeService,
+                postService: postService,
                 coordinator: coordinator
             )
         }
@@ -159,9 +159,11 @@ public let container = Container(parent: Service.container) { container in
 
     container
         .register(AddViewModel.self) { resolver in
+            let postService = resolver.resolve(PostService.self)!
             let photoService = resolver.resolve(PhotoService.self)!
             let coordinator = resolver.resolve(AddCoordinator.self)!
             return AddViewModel(
+                postService: postService,
                 photoService: photoService,
                 coordinator: coordinator
             )

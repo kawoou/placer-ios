@@ -18,6 +18,9 @@
 		88C02552C4CBA90F78C03C4820569BD3 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B90CFBF9181AC98655139AAF09390B /* Network.framework */; };
 		8E9BC6F574937841B6135ABBC848CFA4 /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB12072D7C44D8EE72E0B90EB4432B7 /* Dependency.swift */; };
 		8F3B3821E30926AFA9BEE2E9086A710E /* Domain.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FDC10FDB52EC4A8E01D3102C0A96C0F /* Domain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9DF2203823832980001A295A /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF2203723832980001A295A /* PostRepository.swift */; };
+		9DF2203B23832AA0001A295A /* PostRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF2203A23832A9F001A295A /* PostRepositoryImpl.swift */; };
+		9DF2204D238448FB001A295A /* CodableSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF2204C238448FB001A295A /* CodableSupport.swift */; };
 		A208DEBBDDFDBAE9D9CB9FAD7F46C095 /* DomainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D936E60B77F3A949AA3DD32081DC88F /* DomainTests.swift */; };
 		A6E90CD2CBA3E36A7AB491C0F4BBEA05 /* PostDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AF657894E9F2400D77FCAD24FB10AC /* PostDetail.swift */; };
 		CA6B851971A3DDF9E1076C40B000D68B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8676B6CB348B8B972A5C5020A60509 /* User.swift */; };
@@ -48,6 +51,9 @@
 		89EE81D78048AB5142825D4BF49E2A60 /* DomainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DomainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EFBAD67935FA8CCBB0F997414DD1FD4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		947638DB80A383E1EBF569C9CCC6A1CC /* UserRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryImpl.swift; sourceTree = "<group>"; };
+		9DF2203723832980001A295A /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
+		9DF2203A23832A9F001A295A /* PostRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepositoryImpl.swift; sourceTree = "<group>"; };
+		9DF2204C238448FB001A295A /* CodableSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableSupport.swift; sourceTree = "<group>"; };
 		9FDC10FDB52EC4A8E01D3102C0A96C0F /* Domain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Domain.h; sourceTree = "<group>"; };
 		A91483885D79C31613A16356A0F2EA0C /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		CCBC1AFC078AA514F5451D6A6450BC30 /* Pods-DomainTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DomainTests.release.xcconfig"; path = "Target Support Files/Pods-DomainTests/Pods-DomainTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -83,8 +89,8 @@
 		0FEA34D59E1FC3CAC0BB1C9E2AAAB8BC /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				A9FF08DA46F8A4CA8093DCC225F21FC4 /* Impl */,
-				0B2C618F40B99CA2DDE878050599801E /* UserRepository.swift */,
+				9DF2203623832975001A295A /* Post */,
+				9DF220352383296D001A295A /* User */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -94,6 +100,7 @@
 			children = (
 				3B18855E6468106A29059712B81474D4 /* Dependency */,
 				ACFF77E9FBD7090EF1E485120B44BB3A /* Entity */,
+				9DF2204B238448F3001A295A /* Extension */,
 				0FEA34D59E1FC3CAC0BB1C9E2AAAB8BC /* Repository */,
 				9FDC10FDB52EC4A8E01D3102C0A96C0F /* Domain.h */,
 			);
@@ -156,6 +163,40 @@
 				9ECA9A557D7517EAD6DB894602071790 /* Supporting Files */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		9DF220352383296D001A295A /* User */ = {
+			isa = PBXGroup;
+			children = (
+				A9FF08DA46F8A4CA8093DCC225F21FC4 /* Impl */,
+				0B2C618F40B99CA2DDE878050599801E /* UserRepository.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		9DF2203623832975001A295A /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				9DF2203923832A95001A295A /* Impl */,
+				9DF2203723832980001A295A /* PostRepository.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		9DF2203923832A95001A295A /* Impl */ = {
+			isa = PBXGroup;
+			children = (
+				9DF2203A23832A9F001A295A /* PostRepositoryImpl.swift */,
+			);
+			path = Impl;
+			sourceTree = "<group>";
+		};
+		9DF2204B238448F3001A295A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9DF2204C238448FB001A295A /* CodableSupport.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		9ECA9A557D7517EAD6DB894602071790 /* Supporting Files */ = {
@@ -388,13 +429,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DF2203823832980001A295A /* PostRepository.swift in Sources */,
 				8E9BC6F574937841B6135ABBC848CFA4 /* Dependency.swift in Sources */,
 				5530092129380F26B5571F83FEE8A74A /* Post.swift in Sources */,
 				A6E90CD2CBA3E36A7AB491C0F4BBEA05 /* PostDetail.swift in Sources */,
 				023D01199859BC97BF892E991C92E06E /* PostIndex.swift in Sources */,
 				CA6B851971A3DDF9E1076C40B000D68B /* User.swift in Sources */,
+				9DF2204D238448FB001A295A /* CodableSupport.swift in Sources */,
 				7CF2F6E67618277E03689329CE1FD136 /* UserRepository.swift in Sources */,
 				86F626B461B8D85B8E68DA8FCAE31757 /* UserRepositoryImpl.swift in Sources */,
+				9DF2203B23832AA0001A295A /* PostRepositoryImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +565,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = io.kawoou.placer.domain;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -608,6 +653,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = io.kawoou.placer.domain;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

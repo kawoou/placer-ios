@@ -24,10 +24,20 @@ final class AddViewModel: ViewModel {
 
     struct Input {
         let selectPhoto = PublishRelay<TLPHAsset>()
+
+        let setDescription = PublishRelay<String>()
+
+        let savePhoto = PublishRelay<Void>()
     }
     struct Output {
         let photo = BehaviorRelay<TLPHAsset?>(value: nil)
         let photoExif = BehaviorRelay<PhotoExif?>(value: nil)
+
+        let description = BehaviorRelay<String>(value: "")
+
+        let isLoading = BehaviorRelay<Bool>(value: false)
+        let isClose = BehaviorRelay<Bool>(value: false)
+        let isError = BehaviorRelay<Bool>(value: false)
     }
 
     // MARK: - Property
@@ -42,6 +52,7 @@ final class AddViewModel: ViewModel {
     // MARK: - Lifecycle
 
     init(
+        postService: PostService,
         photoService: PhotoService,
         coordinator: CoordinatorPerformable,
         input: Input = .init(),
@@ -62,6 +73,36 @@ final class AddViewModel: ViewModel {
             .map { $0 }
             .catchError { _ in .just(nil) }
             .bind(to: output.photoExif)
+            .disposed(by: disposeBag)
+
+        input.setDescription
+            .bind(to: output.description)
+            .disposed(by: disposeBag)
+
+        let saveStream = input.savePhoto
+            .do(onNext: {
+                output.isLoading.accept(true)
+            })
+            .withLatestFrom(output.photo) { $1?.phAsset }
+            .filterNil()
+            .withLatestFrom(output.description) { ($1, $0) }
+            .flatMapLatest { postService.writePost(comment: $0.0, imageAsset: $0.1) }
+            .map { $0 }
+            .catchErrorJustReturn(nil)
+            .do(onNext: { _ in
+                output.isLoading.accept(false)
+            })
+            .share()
+
+        saveStream
+            .map { $0 == nil }
+            .bind(to: output.isError)
+            .disposed(by: disposeBag)
+
+        saveStream
+            .filterNil()
+            .map { _ in true }
+            .bind(to: output.isClose)
             .disposed(by: disposeBag)
     }
     deinit {

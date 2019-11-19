@@ -13,14 +13,6 @@ final class PostUserCell: UITableViewCell {
 
     // MARK: - Interface
 
-    private lazy var profileView: UIImageView = {
-        let view = UIImageView()
-        view.backgroundColor = .gray
-        view.layer.cornerRadius = 10
-        view.layer.masksToBounds = true
-        return view
-    }()
-
     private lazy var nicknameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
@@ -41,18 +33,14 @@ final class PostUserCell: UITableViewCell {
     private var disposeBag = DisposeBag()
 
     private func setupConstraints() {
-        profileView.snp.makeConstraints { maker in
-            maker.top.bottom.equalToSuperview().inset(10)
-            maker.leading.equalToSuperview().inset(14)
-            maker.size.equalTo(32)
-        }
         nicknameLabel.snp.makeConstraints { maker in
-            maker.leading.equalTo(profileView.snp.trailing).offset(10)
-            maker.centerY.equalTo(profileView)
+            maker.top.bottom.equalToSuperview().inset(10)
+            maker.height.equalTo(32)
+            maker.leading.equalToSuperview().inset(14)
         }
         timeLabel.snp.makeConstraints { maker in
             maker.leading.equalTo(nicknameLabel.snp.trailing).offset(16)
-            maker.centerY.equalTo(profileView)
+            maker.centerY.equalTo(nicknameLabel)
             maker.trailing.equalToSuperview().inset(14)
         }
     }
@@ -73,7 +61,6 @@ final class PostUserCell: UITableViewCell {
 
         backgroundColor = .clear
 
-        contentView.addSubview(profileView)
         contentView.addSubview(nicknameLabel)
         contentView.addSubview(timeLabel)
 

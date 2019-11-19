@@ -6,6 +6,7 @@
 //  Copyright © 2019 kawoou. All rights reserved.
 //
 
+import Domain
 import Service
 import RxSwift
 import RxRelay
@@ -21,7 +22,7 @@ final class PlaceViewModel: ViewModel {
 
     // MARK: - Dependency
 
-    private let placeService: PlaceService
+    private let postService: PostService
 
     // MARK: - ViewModel
 
@@ -48,12 +49,12 @@ final class PlaceViewModel: ViewModel {
 
     init(
         placeId: Int,
-        placeService: PlaceService,
+        postService: PostService,
         coordinator: CoordinatorPerformable,
         input: Input = .init(),
         output: Output = .init()
     ) {
-        self.placeService = placeService
+        self.postService = postService
         self.coordinator = coordinator
         self.input = input
         self.output = output
@@ -67,10 +68,16 @@ final class PlaceViewModel: ViewModel {
             .subscribe(onNext: { () in
                 coordinator <- MainCoordinator.Action.popOne
             })
+            .disposed(by: disposeBag)
 
         output.tab
-            .flatMapLatest { _ in
-                placeService.getPost(placeId: placeId)
+            .flatMapLatest { tab -> Single<[Post]> in
+                switch tab {
+                case .newest:
+                    return postService.getPostsByNewest(page: 0, latitude: 37.302101, longitude: 126.57634, zoom: 10000)
+                case .popular:
+                    return postService.getPostsByPopular(page: 0, latitude: 37.302101, longitude: 126.57634, zoom: 10000)
+                }
             }
             .map { list -> [PlaceSection] in
                 let sections = list.map { post -> PlaceSection in

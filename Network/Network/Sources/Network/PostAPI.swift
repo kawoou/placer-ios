@@ -10,7 +10,7 @@ import Common
 import Moya
 
 public enum PostAPI {
-    case list(page: Int)
+    case list(page: Int, latitude: Double, longitude: Double, zoom: Double)
     case getDetail(postId: Int)
 }
 
@@ -21,10 +21,10 @@ extension PostAPI: TargetType {
 
     public var path: String {
         switch self {
-        case let .list(page: page):
-            return "/get/\(page)"
+        case let .list(page, _, _, _):
+            return "/getByPopularity/\(page)"
         case let .getDetail(postId: postId):
-            return "/getDetail/\(postId)"
+            return "/detail/\(postId)"
         }
     }
 
@@ -43,8 +43,13 @@ extension PostAPI: TargetType {
 
     public var task: Task {
         switch self {
-        case .list:
-            return .requestPlain
+        case let .list(_, latitude, longitude, zoom):
+            return .requestParameters(parameters: [
+                "userId": UserDefaults.standard.string(forKey: "userId") ?? "",
+                "latitude": latitude,
+                "longitude": longitude,
+                "zoom": zoom
+            ], encoding: URLEncoding.default)
         case .getDetail:
             return .requestPlain
         }
@@ -52,5 +57,9 @@ extension PostAPI: TargetType {
 
     public var headers: [String : String]? {
         return [:]
+    }
+
+    public var validationType: ValidationType {
+        return .successCodes
     }
 }

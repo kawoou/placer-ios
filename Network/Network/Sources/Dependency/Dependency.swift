@@ -15,6 +15,5 @@ public let container = Container { container in
     }
     container.register(MoyaProvider<PostAPI>.self) { resolver in
         return MoyaProvider<PostAPI>()
-
     }
 }

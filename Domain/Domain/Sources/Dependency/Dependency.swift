@@ -23,4 +23,9 @@ public let container = Container(parent: Network.container) { container in
         let provider = resolver.resolve(MoyaProvider<UserAPI>.self)!
         return UserRepositoryImpl(provider: provider)
     }
+
+    container.register(PostRepository.self) { resolver in
+        let provider = resolver.resolve(MoyaProvider<PostAPI>.self)!
+        return PostRepositoryImpl(provider: provider)
+    }
 }

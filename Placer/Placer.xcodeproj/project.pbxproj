@@ -13,7 +13,6 @@
 		0B4F328115B0F6E3CF8078F26C5FF1BB /* PlacerTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7987351D83240BD9719EFAB2B02732 /* PlacerTextView.swift */; };
 		0CCC5151471BDC962120D2F4DFCD2561 /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2198E4556EEB9224422D590D5DB281D /* Network.framework */; };
 		12583AA44B73FEE5DCD61F6E75FCA6E3 /* FluentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1D7A2ECA19932EB9859D85FF0A3E80 /* FluentViewController.swift */; };
-		15299C17E0F9E706390877E83B799A12 /* Network.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2198E4556EEB9224422D590D5DB281D /* Network.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		17F6F6EC16E3C1D05547E4818D6D12B2 /* UIColor+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D35E2A115A56730797E1F325D5E1F2 /* UIColor+Image.swift */; };
 		187D772FEE9C1A00FCE5B0962EC3755E /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914E9BEF610B17438C70BF03CCE8F80 /* SearchTextField.swift */; };
 		18C60BC92B31886E74FFA00132420FEB /* RegisterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF10E83AD72FA02F9FA7907D798055 /* RegisterCoordinator.swift */; };
@@ -25,7 +24,6 @@
 		397EEE1868F333291EF4A80D9775D582 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7CB5AF3F8F07FD00057DC937425110 /* MainCoordinator.swift */; };
 		3AB7C58DDB26719AE29C63BFC3B60460 /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A743626993417898FB631F0446AFB4D /* Common.framework */; };
 		3B7449098E700EE95DCADFDB4487A4ED /* TabPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72776F47307C32E617F4FAA800ACC8E9 /* TabPagerView.swift */; };
-		3BB714477DAE4367435B519513602DD5 /* Service.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D271634C3F5EED7210309CCC2DCAD0A /* Service.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4042CEB745E5AA8E5E34074185A48C36 /* PostUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5D4A0C768D4A605C3599EF4EBEBF85 /* PostUserCell.swift */; };
 		43B070AC24C58109B1B4F38F64804E6C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E661210201718D6D31D6C7D5F1EEE340 /* MapViewController.swift */; };
 		45422611DC2E961C0829542002A7E964 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEE387146CB9EF3804031F94D882583 /* SplashViewController.swift */; };
@@ -64,9 +62,7 @@
 		DD776ADC9947E926418881BD30C1D191 /* PlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFCD2993CE4463C3F716D508ACF765B /* PlaceViewModel.swift */; };
 		DDEA16DCCBB7644B8DEB78BFEE0E9DEC /* PlaceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED24420E60E56D42D83A01D6CDCD60BF /* PlaceSection.swift */; };
 		DF7C0BB7F21785592085183547CA85C7 /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE44084186F0608B0A68F8E5E65EDB28 /* Dependency.swift */; };
-		E1B1B4DA9261A0A7A5A838EF311FB7A7 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99F0A4A55A68278DA8A89062D013722C /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E51B21DDFA2A57D8841825164977EC02 /* Service.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D271634C3F5EED7210309CCC2DCAD0A /* Service.framework */; };
-		E5777425BAC481CA5A18E085E720AC59 /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3A743626993417898FB631F0446AFB4D /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E70B96C06376B1FCC05CD113AB05670B /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1DE4CE0CF8AC5D86816C7BD35D782E /* AddViewModel.swift */; };
 		ECA21CDFAA77BE22236355B263FCA6EB /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3AFD22C7A3C7F8F03C34CA0292E53E /* SplashCoordinator.swift */; };
 		ECAC033D806B3EAAFE5D7A85B765DC5A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C5DB9E47164481BDFD650EA777697 /* AppCoordinator.swift */; };
@@ -83,23 +79,6 @@
 			remoteInfo = Placer;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		306808392EA3E09CC3732352A7347761 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				E5777425BAC481CA5A18E085E720AC59 /* Common.framework in Embed Frameworks */,
-				E1B1B4DA9261A0A7A5A838EF311FB7A7 /* Domain.framework in Embed Frameworks */,
-				15299C17E0F9E706390877E83B799A12 /* Network.framework in Embed Frameworks */,
-				3BB714477DAE4367435B519513602DD5 /* Service.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0933CFB0D80B1F5C1360D9C578ABA8EC /* Pods-PlacerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlacerTests.release.xcconfig"; path = "Target Support Files/Pods-PlacerTests/Pods-PlacerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -199,6 +178,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23D1F475AA13CE2DDBFD4BB03C7363C3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				165B655CE4DCA3281CD67549422FD417 /* PlaceAnnotationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		278ACD21CA0BDCC9AE96FB6676D9D3BC /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,23 +203,31 @@
 			path = Dependency;
 			sourceTree = "<group>";
 		};
-		FACE308413557D3B079C7D6B476EE2C5 /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				23D1F475AA13CE2DDBFD4BB03C7363C3 /* View */,
-				72AD9512F333E1AA77530AFE88771CEE /* MapCoordinator.swift */,
-				E661210201718D6D31D6C7D5F1EEE340 /* MapViewController.swift */,
-				EAED695EA0DB53A657A8DEB66511350E /* MapViewModel.swift */,
-			);
-			path = Map;
-			sourceTree = "<group>";
-		};
 		2F03D39921347AF2E3C146C52C1F4129 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				C36C38E3C3EE548AB43D83CCD6D1DC10 /* PlacerTests.swift */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		32DE6C2C3304114575C8D96AD820B8CB /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				ED24420E60E56D42D83A01D6CDCD60BF /* PlaceSection.swift */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		3EFA09715270A6091D8CE89B4A6CC299 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				32DE6C2C3304114575C8D96AD820B8CB /* Section */,
+				5837D9E96E92A4078ED16CA9F259BDD2 /* PlaceCoordinator.swift */,
+				0DEC95D61D11CE953FD05ED0DD049A53 /* PlaceViewController.swift */,
+				8CFCD2993CE4463C3F716D508ACF765B /* PlaceViewModel.swift */,
+			);
+			path = Place;
 			sourceTree = "<group>";
 		};
 		4247566E42E42C555C16B6ADAE6F9048 /* Register */ = {
@@ -323,54 +318,6 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		23D1F475AA13CE2DDBFD4BB03C7363C3 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				165B655CE4DCA3281CD67549422FD417 /* PlaceAnnotationView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		F73780E9F826F319580618509F3876D0 /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				AB7CB5AF3F8F07FD00057DC937425110 /* MainCoordinator.swift */,
-				60247A72B513418D2B9056FA37FC06A4 /* MainNavigationController.swift */,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
-		3EFA09715270A6091D8CE89B4A6CC299 /* Place */ = {
-			isa = PBXGroup;
-			children = (
-				32DE6C2C3304114575C8D96AD820B8CB /* Section */,
-				5837D9E96E92A4078ED16CA9F259BDD2 /* PlaceCoordinator.swift */,
-				0DEC95D61D11CE953FD05ED0DD049A53 /* PlaceViewController.swift */,
-				8CFCD2993CE4463C3F716D508ACF765B /* PlaceViewModel.swift */,
-			);
-			path = Place;
-			sourceTree = "<group>";
-		};
-		32DE6C2C3304114575C8D96AD820B8CB /* Section */ = {
-			isa = PBXGroup;
-			children = (
-				ED24420E60E56D42D83A01D6CDCD60BF /* PlaceSection.swift */,
-			);
-			path = Section;
-			sourceTree = "<group>";
-		};
-		B3A0279861ADB45D8E0FFB98DBC712C4 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				36F88C3DF6859DDCD6BF28A3E3B7C63E /* PostActionCell.swift */,
-				5103C1839F40BDD64F6005CC3F8B57CF /* PostCellModel.swift */,
-				0F4D4548DF41E5E6835AB89C6F3AC9B6 /* PostContentCell.swift */,
-				CD78FFFDBA78C4BFF5E0D517798D5320 /* PostImageCell.swift */,
-				DD5D4A0C768D4A605C3599EF4EBEBF85 /* PostUserCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		99690D4155FBE6B169B81D727CA8077E /* TabPager */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,16 +325,6 @@
 				72776F47307C32E617F4FAA800ACC8E9 /* TabPagerView.swift */,
 			);
 			path = TabPager;
-			sourceTree = "<group>";
-		};
-		FF0C711375729D98EA781EE466502783 /* Add */ = {
-			isa = PBXGroup;
-			children = (
-				445337B60B1C3E76EDB3D9841337F814 /* AddCoordinator.swift */,
-				B182A87CEC4F7B2709F2CE391B93276E /* AddViewController.swift */,
-				EA1DE4CE0CF8AC5D86816C7BD35D782E /* AddViewModel.swift */,
-			);
-			path = Add;
 			sourceTree = "<group>";
 		};
 		A660F9C6849D6A102C6D67D0B387144E /* Sources */ = {
@@ -430,6 +367,18 @@
 			);
 			sourceTree = "<group>";
 		};
+		B3A0279861ADB45D8E0FFB98DBC712C4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				36F88C3DF6859DDCD6BF28A3E3B7C63E /* PostActionCell.swift */,
+				5103C1839F40BDD64F6005CC3F8B57CF /* PostCellModel.swift */,
+				0F4D4548DF41E5E6835AB89C6F3AC9B6 /* PostContentCell.swift */,
+				CD78FFFDBA78C4BFF5E0D517798D5320 /* PostImageCell.swift */,
+				DD5D4A0C768D4A605C3599EF4EBEBF85 /* PostUserCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		CD5F50FD994557F93A4CDD7FD4336896 /* Rx */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +418,15 @@
 			path = Fluent;
 			sourceTree = "<group>";
 		};
+		F73780E9F826F319580618509F3876D0 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				AB7CB5AF3F8F07FD00057DC937425110 /* MainCoordinator.swift */,
+				60247A72B513418D2B9056FA37FC06A4 /* MainNavigationController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		FA21B9A559832647C2F5520FE530A500 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,6 +435,17 @@
 				74B3984A0AAF65DFD7498E68C43CE8B9 /* LoginViewModel.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		FACE308413557D3B079C7D6B476EE2C5 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				23D1F475AA13CE2DDBFD4BB03C7363C3 /* View */,
+				72AD9512F333E1AA77530AFE88771CEE /* MapCoordinator.swift */,
+				E661210201718D6D31D6C7D5F1EEE340 /* MapViewController.swift */,
+				EAED695EA0DB53A657A8DEB66511350E /* MapViewModel.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		FAD9C054A8818D28D3F85031B076751F /* Placer */ = {
@@ -497,6 +466,16 @@
 				74AC42CBB86847498ED7D56B5C29690A /* SplashViewModel.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		FF0C711375729D98EA781EE466502783 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				445337B60B1C3E76EDB3D9841337F814 /* AddCoordinator.swift */,
+				B182A87CEC4F7B2709F2CE391B93276E /* AddViewController.swift */,
+				EA1DE4CE0CF8AC5D86816C7BD35D782E /* AddViewModel.swift */,
+			);
+			path = Add;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -533,7 +512,6 @@
 				95C8426AD24FB4902560A7D14F95713F /* Frameworks */,
 				0D38C7138520549876CF04A2044E8D72 /* Resources */,
 				E7A809F2F765F71D08722BDA252FE938 /* [CP] Embed Pods Frameworks */,
-				306808392EA3E09CC3732352A7347761 /* Embed Frameworks */,
 				1DF2DD5AEE6963D5946A1303C793FB4A /* Crashlytics */,
 			);
 			buildRules = (

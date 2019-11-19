@@ -91,6 +91,14 @@ final class AddViewController: UIViewController {
         return view
     }()
 
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.isHidden = true
+        return view
+    }()
+
+    private lazy var bodyTapGesture = UITapGestureRecognizer(target: self, action: #selector(tapBody))
+
     // MARK: - Private
 
     private let viewModel: AddViewModel
@@ -141,6 +149,10 @@ final class AddViewController: UIViewController {
             descriptionBottomConstraint = maker.bottom.equalTo(view).inset(40).constraint
             maker.leading.trailing.equalTo(photoLabel)
         }
+
+        activityIndicator.snp.makeConstraints { maker in
+            maker.center.equalToSuperview()
+        }
     }
     private func bind(viewModel: AddViewModel) {
         RxKeyboard.instance.visibleHeight
@@ -157,7 +169,8 @@ final class AddViewController: UIViewController {
             .distinctUntilChanged()
             .asObservable()
             .skip(1)
-            .map { $0 ? 0 : 200 }
+            .map { [weak self] in $0 ? -(self?.scrollView.adjustedContentInset.top ?? 0) : 200 }
+            .delay(.microseconds(100), scheduler: MainScheduler.instance)
             .flatMapAnimate(scrollView, duration: 0.35) {
                 $0.contentOffset.y = $1
             }
@@ -214,6 +227,43 @@ final class AddViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
+        viewModel.output.isClose
+            .asDriver()
+            .distinctUntilChanged()
+            .filter { $0 }
+            .drive(onNext: { [weak self] _ in
+                self?.dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.output.isLoading
+            .asDriver()
+            .distinctUntilChanged()
+            .drive(onNext: { [weak self] isLoading in
+                guard let ss = self else { return }
+                if isLoading {
+                    ss.activityIndicator.isHidden = false
+                    ss.activityIndicator.startAnimating()
+                } else {
+                    ss.activityIndicator.isHidden = true
+                    ss.activityIndicator.stopAnimating()
+                }
+            })
+            .disposed(by: disposeBag)
+
+        viewModel.output.isError
+            .asDriver()
+            .distinctUntilChanged()
+            .filter { $0 }
+            .drive(onNext: { [weak self] _ in
+                let alertController = UIAlertController(title: "에러", message: "사진 업로드에 실패했습니다", preferredStyle: .alert)
+                alertController.addAction(
+                    UIAlertAction(title: "닫기", style: .cancel)
+                )
+                self?.present(alertController, animated: true)
+            })
+            .disposed(by: disposeBag)
+
         /// Input
         photoSelectButton.rx.tap
             .asDriver()
@@ -231,6 +281,10 @@ final class AddViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
+        doneBarButton.rx.tap
+            .bind(to: viewModel.input.savePhoto)
+            .disposed(by: disposeBag)
+
         closeBarButton.rx.tap
             .asObservable()
             .take(1)
@@ -239,6 +293,12 @@ final class AddViewController: UIViewController {
                 self?.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
+    }
+
+    // MARK: - Action
+
+    @objc func tapBody() {
+        view.endEditing(true)
     }
 
     // MARK: - Lifecycle
@@ -263,6 +323,10 @@ final class AddViewController: UIViewController {
         scrollView.addSubview(descriptionLabel)
         scrollView.addSubview(descriptionTextView)
         view.addSubview(scrollView)
+
+        view.addSubview(activityIndicator)
+
+        view.addGestureRecognizer(bodyTapGesture)
 
         setupConstraints()
         bind(viewModel: viewModel)

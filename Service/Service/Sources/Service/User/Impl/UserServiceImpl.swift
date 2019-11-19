@@ -50,6 +50,8 @@ final class UserServiceImpl: UserService {
         return userRepository
             .login(request: request)
             .do(onSuccess: { [weak self] user in
+                UserDefaults.standard.set("\(user.id)", forKey: "userId")
+
                 self?.saveLoginInfo(request)
                 self?.userState.accept(.loggedIn(user))
             }, onError: { [weak self] _ in

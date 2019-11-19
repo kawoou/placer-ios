@@ -157,6 +157,13 @@
 			path = Rx;
 			sourceTree = "<group>";
 		};
+		9DF2203C23832BB1001A295A /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Plugin;
+			sourceTree = "<group>";
+		};
 		A447BB831EB505BF6E5AB8C7B473B5FC /* Dependency */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +203,7 @@
 				A447BB831EB505BF6E5AB8C7B473B5FC /* Dependency */,
 				ADC8331FF17BF825A2428F699AC412C4 /* Extension */,
 				745453E0B83993E29AE1A1FF5F567278 /* Network */,
+				9DF2203C23832BB1001A295A /* Plugin */,
 				6401FA03B5F4A3B3880A3D982E6A7985 /* Network.h */,
 			);
 			path = Sources;
@@ -423,6 +431,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = io.kawoou.placer.network;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -593,6 +602,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = staticlib;
 				PRODUCT_BUNDLE_IDENTIFIER = io.kawoou.placer.network;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
