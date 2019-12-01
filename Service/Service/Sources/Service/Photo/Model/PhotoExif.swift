@@ -31,5 +31,7 @@ public struct PhotoExif {
 
     public let latitude: Double
     public let longitude: Double
+    public let altitude: Double?
+
     public let timestamp: Date
 }

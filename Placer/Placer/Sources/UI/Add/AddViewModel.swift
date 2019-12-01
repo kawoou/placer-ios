@@ -26,8 +26,6 @@ final class AddViewModel: ViewModel {
         let selectPhoto = PublishRelay<TLPHAsset>()
 
         let setDescription = PublishRelay<String>()
-
-        let savePhoto = PublishRelay<Void>()
     }
     struct Output {
         let photo = BehaviorRelay<TLPHAsset?>(value: nil)
@@ -35,9 +33,9 @@ final class AddViewModel: ViewModel {
 
         let description = BehaviorRelay<String>(value: "")
 
+        let isError = BehaviorRelay<Bool>(value: false)
         let isLoading = BehaviorRelay<Bool>(value: false)
         let isClose = BehaviorRelay<Bool>(value: false)
-        let isError = BehaviorRelay<Bool>(value: false)
     }
 
     // MARK: - Property
@@ -48,6 +46,19 @@ final class AddViewModel: ViewModel {
     // MARK: - Private
 
     private let disposeBag = DisposeBag()
+
+    // MARK: - Public
+
+    func makeUploadViewModel() -> UploadViewModel? {
+        guard let photo = output.photo.value?.phAsset else { return nil }
+        guard let exif = output.photoExif.value else { return nil }
+
+        let description = output.description.value
+        return container.resolve(
+            UploadViewModel.self,
+            arguments: photo, exif, description
+        )
+    }
 
     // MARK: - Lifecycle
 
@@ -62,47 +73,43 @@ final class AddViewModel: ViewModel {
         self.input = input
         self.output = output
 
-        input.selectPhoto
+        let photoStream = input.selectPhoto
+            .do(onNext: { _ in
+                output.isError.accept(false)
+                output.isLoading.accept(true)
+            })
+            .flatMap { asset -> Single<(TLPHAsset, PhotoExif)?> in
+                guard let phAsset = asset.phAsset else {
+                    return .just(nil)
+                }
+                return photoService.retrieveExif(from: phAsset)
+                    .map { $0 }
+                    .catchErrorJustReturn(nil)
+                    .map { exif in
+                        exif.map { (asset, $0) }
+                    }
+            }
+            .do(onNext: { image in
+                if image == nil {
+                    output.isError.accept(true)
+                }
+                output.isLoading.accept(false)
+            })
+            .filterNil()
+            .share()
+
+        photoStream
+            .map { $0.0 }
             .bind(to: output.photo)
             .disposed(by: disposeBag)
 
-        input.selectPhoto
-            .map { $0.phAsset }
-            .filterNil()
-            .flatMap { photoService.retrieveExif(from: $0) }
-            .map { $0 }
-            .catchError { _ in .just(nil) }
+        photoStream
+            .map { $0.1 }
             .bind(to: output.photoExif)
             .disposed(by: disposeBag)
 
         input.setDescription
             .bind(to: output.description)
-            .disposed(by: disposeBag)
-
-        let saveStream = input.savePhoto
-            .do(onNext: {
-                output.isLoading.accept(true)
-            })
-            .withLatestFrom(output.photo) { $1?.phAsset }
-            .filterNil()
-            .withLatestFrom(output.description) { ($1, $0) }
-            .flatMapLatest { postService.writePost(comment: $0.0, imageAsset: $0.1) }
-            .map { $0 }
-            .catchErrorJustReturn(nil)
-            .do(onNext: { _ in
-                output.isLoading.accept(false)
-            })
-            .share()
-
-        saveStream
-            .map { $0 == nil }
-            .bind(to: output.isError)
-            .disposed(by: disposeBag)
-
-        saveStream
-            .filterNil()
-            .map { _ in true }
-            .bind(to: output.isClose)
             .disposed(by: disposeBag)
     }
     deinit {

@@ -18,11 +18,12 @@ public let container = Container(parent: Domain.container, defaultObjectScope: .
         return LocationServiceImpl()
     }
     container.register(PostService.self) { resolver in
+        let postRepository = resolver.resolve(PostRepository.self)!
         let userService = resolver.resolve(UserService.self)!
         let photoService = resolver.resolve(PhotoService.self)!
-        return LocalPostServiceImpl(
-            userService: userService,
-            photoService: photoService
+        return PostServiceImpl(
+            postRepository: postRepository,
+            userService: userService
         )
     }
     container.register(PhotoService.self) { _ in

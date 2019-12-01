@@ -13,6 +13,7 @@ import RxSwift
 
 enum PostServiceError: Error {
     case notLoggedIn
+    case imageNotFound
 }
 
 final class LocalPostServiceImpl: PostService {
@@ -48,6 +49,9 @@ final class LocalPostServiceImpl: PostService {
 
     // MARK: - Public
 
+    func getPostsByMap(latitude: Double, longitude: Double, zoom: Double) -> Single<[PostMap]> {
+        return .just([])
+    }
     func getPostsByNewest(page: Int, latitude: Double, longitude: Double, zoom: Double) -> Single<[Post]> {
         return .just(storage.reversed())
     }
@@ -55,18 +59,14 @@ final class LocalPostServiceImpl: PostService {
         return .just(storage.sorted { $0.likeCount < $1.likeCount })
     }
 
-    func getPosts(page: Int, latitude: Double, longitude: Double, zoom: Double) -> Single<[Post]> {
-        return .just(storage)
-    }
-
-    func getPost(postId: Int) -> Single<Post> {
-        guard let post = storage.first(where: { $0.id == postId }) else {
+    func getPost(postId: Int) -> Single<PostDetail> {
+        guard let post = detailStorage.first(where: { $0.postId == postId }) else {
             return .error(RxError.noElements)
         }
         return .just(post)
     }
 
-    func writePost(comment: String, imageAsset: PHAsset) -> Single<Post> {
+    func writePost(comment: String, imageAsset: PHAsset, photoExif: PhotoExif) -> Single<Post> {
         guard case .loggedIn(let user) = userService.userState.value else {
             return .error(PostServiceError.notLoggedIn)
         }
@@ -79,8 +79,14 @@ final class LocalPostServiceImpl: PostService {
                     contentMode: .default,
                     options: nil
                 ) { (image, _) in
-                    guard let image = image else { return }
-                    guard let data = image.pngData() else { return }
+                    guard let image = image else {
+                        observer(.error(PostServiceError.imageNotFound))
+                        return
+                    }
+                    guard let data = image.pngData() else {
+                        observer(.error(PostServiceError.imageNotFound))
+                        return
+                    }
 
                     let fileName = "\(UUID().uuidString)_\(Date().timeIntervalSince1970).png"
                     let url = Constant.imageDocumentPath.appendingPathComponent(fileName)
@@ -95,11 +101,7 @@ final class LocalPostServiceImpl: PostService {
 
                 return Disposables.create()
             }
-            .flatMap { [unowned self] url -> Single<(String, PhotoExif)> in
-                return self.photoService.retrieveExif(from: imageAsset)
-                    .map { (url, $0) }
-            }
-            .map { [unowned self] (url, exif) -> Post in
+            .map { [unowned self] url -> Post in
                 let post = Post(
                     id: (self.storage.last?.id ?? 0) + 1,
                     writerNickname: user.nickname,
@@ -112,16 +114,16 @@ final class LocalPostServiceImpl: PostService {
 
                 let postDetail = PostDetail(
                     postId: post.id,
-                    aperture: exif.aperture,
-                    focalLength: exif.focalLength,
-                    exposureTime: exif.exposureTime.map { Int(1 / $0) },
-                    iso: exif.iso,
-                    flash: exif.flash,
-                    manufacturer: exif.manufacturer,
-                    lensModel: exif.lensModel,
-                    latitude: exif.latitude,
-                    longitude: exif.longitude,
-                    timestamp: Date()
+                    aperture: photoExif.aperture,
+                    focalLength: photoExif.focalLength,
+                    exposureTime: photoExif.exposureTime.map { Int(1 / $0) },
+                    iso: photoExif.iso,
+                    flash: photoExif.flash,
+                    manufacturer: photoExif.manufacturer,
+                    lensModel: photoExif.lensModel,
+                    altitude: photoExif.altitude,
+                    latitude: photoExif.latitude,
+                    longitude: photoExif.longitude
                 )
 
                 self.detailStorage.append(postDetail)
@@ -129,6 +131,10 @@ final class LocalPostServiceImpl: PostService {
 
                 return post
             }
+    }
+
+    func toggleLikePost(postId: Int) -> Single<Bool> {
+        return .just(true)
     }
 
     // MARK: - Lifecycle

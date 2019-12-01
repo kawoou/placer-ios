@@ -14,12 +14,8 @@ final class PostCellModel: ViewModel {
 
     // MARK: - ViewModel
 
-    struct Input {
-
-    }
-    struct Output {
-
-    }
+    struct Input {}
+    struct Output {}
 
     // MARK: - Property
 
@@ -40,5 +36,4 @@ final class PostCellModel: ViewModel {
         self.input = input
         self.output = output
     }
-
 }

@@ -13,4 +13,5 @@ public protocol LocationService {
     func observeCurrentLocation() -> Observable<Location>
 
     func searchLocation(query: String) -> Single<[MKMapItem]>
+    func searchSimilarCityName(longitude: Double, latitude: Double) -> Single<String>
 }

@@ -7,16 +7,28 @@
 //
 
 import Network
+import Alamofire
 import Swinject
 import Moya
 
 public let container = Container(parent: Network.container) { container in
-    container.register(MoyaProvider<UserAPI>.self) { _ in
-        return MoyaProvider<UserAPI>()
+    container.register(SessionManager.self) { _ in
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+        configuration.timeoutIntervalForRequest = 40
+        configuration.timeoutIntervalForResource = 40
+        configuration.requestCachePolicy = .useProtocolCachePolicy
+        return SessionManager(configuration: configuration)
     }
 
-    container.register(MoyaProvider<PostAPI>.self) { _ in
-        return MoyaProvider<PostAPI>()
+    container.register(MoyaProvider<UserAPI>.self) { resolver in
+        let sessionManager = resolver.resolve(SessionManager.self)!
+        return MoyaProvider<UserAPI>(manager: sessionManager)
+    }
+
+    container.register(MoyaProvider<PostAPI>.self) { resolver in
+        let sessionManager = resolver.resolve(SessionManager.self)!
+        return MoyaProvider<PostAPI>(manager: sessionManager)
     }
 
     container.register(UserRepository.self) { resolver in

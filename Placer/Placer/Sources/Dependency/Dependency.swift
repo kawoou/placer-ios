@@ -6,6 +6,8 @@
 //  Copyright © 2019 kawoou. All rights reserved.
 //
 
+import Photos
+import Domain
 import Service
 import Swinject
 
@@ -109,9 +111,11 @@ public let container = Container(parent: Service.container) { container in
     container
         .register(MainViewModel.self) { resolver in
             let locationService = resolver.resolve(LocationService.self)!
+            let postService = resolver.resolve(PostService.self)!
             let coordinator = resolver.resolve(MapCoordinator.self)!
             return MainViewModel(
                 locationService: locationService,
+                postService: postService,
                 coordinator: coordinator
             )
         }
@@ -126,17 +130,25 @@ public let container = Container(parent: Service.container) { container in
 
     /// Place
     container
-        .register(PlaceCoordinator.self) { (_, placeId) in
-            return PlaceCoordinator(placeId: placeId)
+        .register(PlaceCoordinator.self) { (_, cityName: String, longitude: Double, latitude: Double, zoom: Double) in
+            return PlaceCoordinator(
+                cityName: cityName,
+                longitude: longitude,
+                latitude: latitude,
+                zoom: zoom
+            )
         }
         .inObjectScope(.weak)
 
     container
-        .register(PlaceViewModel.self) { (resolver, placeId: Int) in
+        .register(PlaceViewModel.self) { (resolver, cityName: String, longitude: Double, latitude: Double, zoom: Double) in
             let postService = resolver.resolve(PostService.self)!
-            let coordinator = resolver.resolve(PlaceCoordinator.self, argument: placeId)!
+            let coordinator = resolver.resolve(PlaceCoordinator.self, arguments: cityName, longitude, latitude, zoom)!
             return PlaceViewModel(
-                placeId: placeId,
+                cityName: cityName,
+                longitude: longitude,
+                latitude: latitude,
+                zoom: zoom,
                 postService: postService,
                 coordinator: coordinator
             )
@@ -144,9 +156,32 @@ public let container = Container(parent: Service.container) { container in
         .inObjectScope(.weak)
 
     container
-        .register(PlaceViewController.self) { (resolver, placeId: Int) in
-            let viewModel = resolver.resolve(PlaceViewModel.self, argument: placeId)!
+        .register(PlaceViewController.self) { (resolver, cityName: String, longitude: Double, latitude: Double, zoom: Double) in
+            let viewModel = resolver.resolve(PlaceViewModel.self, arguments: cityName, longitude, latitude, zoom)!
             return PlaceViewController(viewModel: viewModel)
+        }
+        .inObjectScope(.weak)
+
+    /// Post Detail
+    container
+        .register(PostDetailCoordinator.self) { (_, post: Post) in
+            return PostDetailCoordinator(post: post)
+        }
+        .inObjectScope(.weak)
+
+    container
+        .register(PostDetailViewModel.self) { (resolver, post: Post) in
+            let postService = resolver.resolve(PostService.self)!
+            return PostDetailViewModel(post: post, postService: postService)
+        }
+        .inObjectScope(.weak)
+
+    container
+        .register(PostDetailViewController.self) { (resolver, post: Post) in
+            let viewModel = resolver.resolve(PostDetailViewModel.self, argument: post)!
+            return PostDetailViewController(
+                viewModel: viewModel
+            )
         }
         .inObjectScope(.weak)
 
@@ -174,6 +209,32 @@ public let container = Container(parent: Service.container) { container in
         .register(AddViewController.self) { resolver in
             let viewModel = resolver.resolve(AddViewModel.self)!
             return AddViewController(viewModel: viewModel)
+        }
+        .inObjectScope(.weak)
+
+    /// Upload
+    container
+        .register(UploadViewModel.self) { (resolver, photo: PHAsset, photoExif: PhotoExif, description: String) in
+            let postService = resolver.resolve(PostService.self)!
+            let photoService = resolver.resolve(PhotoService.self)!
+            let coordinator = resolver.resolve(AddCoordinator.self)!
+
+            return UploadViewModel(
+                uploadPhoto: photo,
+                photoExif: photoExif,
+                description: description,
+                postService: postService,
+                photoService: photoService,
+                coordinator: coordinator
+            )
+        }
+        .inObjectScope(.weak)
+
+    container
+        .register(UploadViewController.self) { (_, viewModel: UploadViewModel) in
+            return UploadViewController(
+                viewModel: viewModel
+            )
         }
         .inObjectScope(.weak)
 }

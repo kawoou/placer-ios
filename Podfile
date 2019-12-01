@@ -123,6 +123,7 @@ target 'Placer' do
   pod 'Kingfisher'
   pod 'SnapKit'
   pod 'TLPhotoPicker'
+  pod 'JTMaterialSpinner'
 
   target 'PlacerTests' do
     inherit! :search_paths

@@ -96,7 +96,7 @@ final class PlacerNavigationView: UIVisualEffectView {
             internalIntrinsicContentSize.height = SafeLayoutMargin.top + 10
             contentView.alpha = 0
         }
-        scrollView.scrollIndicatorInsets.top = internalIntrinsicContentSize.height - scrollView.adjustedContentInset.top
+//        scrollView.scrollIndicatorInsets.top = internalIntrinsicContentSize.height - scrollView.adjustedContentInset.top
 
         invalidateIntrinsicContentSize()
         superview?.layoutIfNeeded()
@@ -110,7 +110,7 @@ final class PlacerNavigationView: UIVisualEffectView {
         followScrollView = scrollView
         followDelay = delay
 
-        scrollView.scrollIndicatorInsets.top = height
+//        scrollView.scrollIndicatorInsets.top = height
 
         scrollView.rx.contentOffset
             .asDriver()
@@ -188,7 +188,7 @@ final class PlacerNavigationView: UIVisualEffectView {
             contentView.alpha = percentage
 
             internalIntrinsicContentSize.height = clampOffset
-            scrollView.scrollIndicatorInsets.top = internalIntrinsicContentSize.height - scrollView.adjustedContentInset.top
+//            scrollView.scrollIndicatorInsets.top = internalIntrinsicContentSize.height - scrollView.adjustedContentInset.top
             invalidateIntrinsicContentSize()
 
         case .ended, .failed:

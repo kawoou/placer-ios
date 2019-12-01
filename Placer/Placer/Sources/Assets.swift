@@ -30,6 +30,8 @@ internal enum Asset {
   internal static let iconBrandBlack = ImageAsset(name: "icon-brand-black")
   internal static let iconBrandWhite = ImageAsset(name: "icon-brand-white")
   internal static let iconClose = ImageAsset(name: "icon-close")
+  internal static let iconDone = ImageAsset(name: "icon-done")
+  internal static let iconError = ImageAsset(name: "icon-error")
   internal static let iconLiked = ImageAsset(name: "icon-liked")
   internal static let iconLocationLine = ImageAsset(name: "icon-location-line")
   internal static let iconLocationSolid = ImageAsset(name: "icon-location-solid")

@@ -11,10 +11,13 @@ import Domain
 import RxSwift
 
 public protocol PostService {
+    func getPostsByMap(latitude: Double, longitude: Double, zoom: Double) -> Single<[PostMap]>
     func getPostsByNewest(page: Int, latitude: Double, longitude: Double, zoom: Double) -> Single<[Post]>
     func getPostsByPopular(page: Int, latitude: Double, longitude: Double, zoom: Double) -> Single<[Post]>
 
-    func getPost(postId: Int) -> Single<Post>
+    func getPost(postId: Int) -> Single<PostDetail>
 
-    func writePost(comment: String, imageAsset: PHAsset) -> Single<Post>
+    func writePost(comment: String, imageAsset: PHAsset, photoExif: PhotoExif) -> Single<Post>
+
+    func toggleLikePost(postId: Int) -> Single<Bool>
 }

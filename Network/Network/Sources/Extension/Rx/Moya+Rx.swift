@@ -34,9 +34,14 @@ public extension PrimitiveSequence where Trait == SingleTrait, Element == Respon
     func map<D: Decodable>(
         _ type: D.Type,
         atKeyPath keyPath: String? = nil,
-        using decoder: JSONDecoder = JSONDecoder(),
+        using decoder: JSONDecoder? = nil,
         failsOnEmptyData: Bool = true
     ) -> Single<D> {
+        let decoder = decoder ?? {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .millisecondsSince1970
+            return decoder
+        }()
         return flatMap {
             .just(
                 try $0.map(

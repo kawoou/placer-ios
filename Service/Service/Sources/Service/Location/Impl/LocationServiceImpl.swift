@@ -13,6 +13,10 @@ import RxSwift
 import RxRelay
 import RxOptional
 
+enum LocationServiceError: Error {
+    case cannotFoundCityName
+}
+
 final class LocationServiceImpl: NSObject, LocationService {
 
     // MARK: - Private
@@ -50,6 +54,25 @@ final class LocationServiceImpl: NSObject, LocationService {
                     return
                 }
                 observer(.success(response?.mapItems ?? []))
+            }
+
+            return Disposables.create()
+        }
+    }
+
+    func searchSimilarCityName(longitude: Double, latitude: Double) -> Single<String> {
+        return .create { observer in
+            let geocoder = CLGeocoder()
+            let location = CLLocation(latitude: latitude, longitude: longitude)
+            geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+                guard let placemark = placemarks?.first else {
+                    observer(.error(LocationServiceError.cannotFoundCityName))
+                    return
+                }
+
+                let locality = placemark.locality ?? ""
+                let subLocality = placemark.subLocality ?? ""
+                observer(.success("\(locality) \(subLocality)"))
             }
 
             return Disposables.create()

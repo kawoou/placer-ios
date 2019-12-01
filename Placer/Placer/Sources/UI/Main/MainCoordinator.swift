@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Domain
 
 final class MainCoordinator: Coordinator {
 
@@ -14,7 +15,13 @@ final class MainCoordinator: Coordinator {
         case presentMap
 
         case popOne
-        case pushPlace(Int)
+        case pushPlace(
+            cityName: String,
+            longitude: Double,
+            latitude: Double,
+            zoom: Double
+        )
+        case pushPostDetail(post: Post)
     }
 
     func instantiate() -> MainNavigationController {
@@ -31,8 +38,15 @@ final class MainCoordinator: Coordinator {
         case .popOne:
             return [.pop()]
 
-        case let .pushPlace(id):
-            return [.push(container.resolve(PlaceCoordinator.self, argument: id)!)]
+        case let .pushPlace(cityName, longitude, latitude, zoom):
+            return [
+                .push(container.resolve(PlaceCoordinator.self, arguments: cityName, longitude, latitude, zoom)!)
+            ]
+
+        case let .pushPostDetail(post):
+            return [
+                .push(container.resolve(PostDetailCoordinator.self, argument: post)!)
+            ]
         }
     }
 }

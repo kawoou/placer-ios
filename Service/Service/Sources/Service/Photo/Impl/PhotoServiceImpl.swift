@@ -65,6 +65,7 @@ final class PhotoServiceImpl: PhotoService {
                     lensModel: tiff[kCGImagePropertyTIFFModel as String] as? String,
                     latitude: latitude,
                     longitude: longitude,
+                    altitude: gps[kCGImagePropertyGPSAltitude as String] as? Double,
                     timestamp: date
                 )
                 observer(.success(model))

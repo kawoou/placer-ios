@@ -56,6 +56,7 @@ final class PostContentCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         backgroundColor = .clear
+        selectionStyle = .none
 
         contentView.addSubview(contentLabel)
 

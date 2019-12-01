@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import Kingfisher
 
 final class PostImageCell: UITableViewCell {
 
@@ -44,14 +45,10 @@ final class PostImageCell: UITableViewCell {
     // MARK: - Public
 
     func bind(viewModel: PostCellModel) {
-        placeImageView.image = nil
+        placeImageView.kf.cancelDownloadTask()
 
-        guard !viewModel.post.imageUrl.hasPrefix("http") else { return }
-
-        let url = Constant.imageDocumentPath.appendingPathComponent(viewModel.post.imageUrl)
-        guard let data = try? Data(contentsOf: url) else { return }
-        guard let image = UIImage(data: data) else { return }
-        placeImageView.image = image
+        guard let url = URL(string: viewModel.post.imageUrl) else { return }
+        placeImageView.kf.setImage(with: url, placeholder: nil)
     }
 
     // MARK: - Lifecycle
@@ -68,6 +65,7 @@ final class PostImageCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         backgroundColor = .clear
+        selectionStyle = .none
 
         contentView.addSubview(placeImageView)
 

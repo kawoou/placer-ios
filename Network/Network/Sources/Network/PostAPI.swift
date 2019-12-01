@@ -10,8 +10,30 @@ import Common
 import Moya
 
 public enum PostAPI {
-    case list(page: Int, latitude: Double, longitude: Double, zoom: Double)
+    case listMap(latitude: Double, longitude: Double, zoom: Double)
+    case listTime(page: Int, latitude: Double, longitude: Double, zoom: Double)
+    case listPopular(page: Int, latitude: Double, longitude: Double, zoom: Double)
     case getDetail(postId: Int)
+    case upload(
+        nickname: String,
+        comment: String,
+        file: Data,
+        aperture: Double?,
+        focalLength: Double?,
+        exposureTime: Double?,
+        iso: Int?,
+        flash: Bool?,
+        manufacturer: String?,
+        lensModel: String?,
+        latitude: Double,
+        longitude: Double,
+        altitude: Double?,
+        timestamp: Date
+    )
+    case toggleLike(
+        postId: Int,
+        userId: Int
+    )
 }
 
 extension PostAPI: TargetType {
@@ -21,19 +43,35 @@ extension PostAPI: TargetType {
 
     public var path: String {
         switch self {
-        case let .list(page, _, _, _):
+        case .listMap:
+            return "/getForMap"
+        case let .listTime(page, _, _, _):
+            return "/getByTime/\(page)"
+        case let .listPopular(page, _, _, _):
             return "/getByPopularity/\(page)"
         case let .getDetail(postId: postId):
             return "/detail/\(postId)"
+        case .upload:
+            return "/post"
+        case let .toggleLike(postId, userId):
+            return "/like/\(postId)/\(userId)"
         }
     }
 
     public var method: Moya.Method {
         switch self {
-        case .list:
+        case .listMap:
+            return .get
+        case .listTime:
+            return .get
+        case .listPopular:
             return .get
         case .getDetail:
             return .get
+        case .upload:
+            return .post
+        case .toggleLike:
+            return .post
         }
     }
 
@@ -43,14 +81,93 @@ extension PostAPI: TargetType {
 
     public var task: Task {
         switch self {
-        case let .list(_, latitude, longitude, zoom):
+        case let .listMap(latitude, longitude, zoom):
+            return .requestParameters(parameters: [
+                "latitude": latitude,
+                "longitude": longitude,
+                "zoom": zoom
+            ], encoding: URLEncoding.default)
+
+        case let .listTime(_, latitude, longitude, zoom):
             return .requestParameters(parameters: [
                 "userId": UserDefaults.standard.string(forKey: "userId") ?? "",
                 "latitude": latitude,
                 "longitude": longitude,
                 "zoom": zoom
             ], encoding: URLEncoding.default)
+
+        case let .listPopular(_, latitude, longitude, zoom):
+            return .requestParameters(parameters: [
+                "userId": UserDefaults.standard.string(forKey: "userId") ?? "",
+                "latitude": latitude,
+                "longitude": longitude,
+                "zoom": zoom
+            ], encoding: URLEncoding.default)
+
         case .getDetail:
+            return .requestPlain
+
+        case let .upload(
+            nickname,
+            comment,
+            file,
+            aperture,
+            focalLength,
+            exposureTime,
+            iso,
+            flash,
+            manufacturer,
+            lensModel,
+            latitude,
+            longitude,
+            altitude,
+            timestamp
+        ):
+            var parameters: [String: String] = [
+                "nickName": nickname,
+                "comment": comment,
+                "latitude": "\(latitude)",
+                "longitude": "\(longitude)",
+                "timestamp": "\(timestamp)"
+            ]
+
+            parameters["aperture"] = aperture.map { "\($0)" } ?? "0"
+            if let focalLength = focalLength {
+                parameters["focalLength"] = "\(focalLength)"
+            }
+            if let exposureTime = exposureTime {
+                parameters["exposureTime"] = "\(Int(1 / exposureTime))"
+            }
+            if let iso = iso {
+                parameters["iso"] = "\(iso)"
+            }
+            if let flash = flash {
+                parameters["flash"] = "\(flash)"
+            }
+            if let manufacturer = manufacturer {
+                parameters["manufacturer"] = "\(manufacturer)"
+            }
+            if let lensModel = lensModel {
+                parameters["lensModel"] = "\(lensModel)"
+            }
+            if let altitude = altitude {
+                parameters["altitude"] = "\(altitude)"
+            }
+            return .uploadMultipart([
+                MultipartFormData(
+                    provider: .data(file),
+                    name: "file",
+                    fileName: "\(UUID().uuidString)).jpg",
+                    mimeType: "image/jpeg"
+                )
+            ] + parameters.map { (key, value) in
+                MultipartFormData(
+                    provider: .data(value.data(using: .utf8)!),
+                    name: key
+                )
+            })
+
+        case .toggleLike:
             return .requestPlain
         }
     }

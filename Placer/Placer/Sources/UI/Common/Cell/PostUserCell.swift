@@ -60,6 +60,7 @@ final class PostUserCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         backgroundColor = .clear
+        selectionStyle = .none
 
         contentView.addSubview(nicknameLabel)
         contentView.addSubview(timeLabel)

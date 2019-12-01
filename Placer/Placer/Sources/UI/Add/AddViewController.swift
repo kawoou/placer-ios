@@ -13,6 +13,7 @@ import SnapKit
 import RxSwift
 import RxKeyboard
 import TLPhotoPicker
+import JTMaterialSpinner
 
 final class AddViewController: UIViewController {
 
@@ -91,9 +92,17 @@ final class AddViewController: UIViewController {
         return view
     }()
 
-    private lazy var activityIndicator: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView()
+    private lazy var loadingView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Asset.colorGray6.color.withAlphaComponent(0.5)
         view.isHidden = true
+        return view
+    }()
+    private lazy var spinnerView: JTMaterialSpinner = {
+        let view = JTMaterialSpinner()
+        view.circleLayer.lineWidth = 2.0
+        view.circleLayer.strokeColor = UIColor.white.cgColor
+        view.animationDuration = 2.5
         return view
     }()
 
@@ -150,8 +159,12 @@ final class AddViewController: UIViewController {
             maker.leading.trailing.equalTo(photoLabel)
         }
 
-        activityIndicator.snp.makeConstraints { maker in
+        loadingView.snp.makeConstraints { maker in
+            maker.edges.equalToSuperview()
+        }
+        spinnerView.snp.makeConstraints { maker in
             maker.center.equalToSuperview()
+            maker.size.equalTo(36)
         }
     }
     private func bind(viewModel: AddViewModel) {
@@ -179,7 +192,24 @@ final class AddViewController: UIViewController {
 
         /// Output
         viewModel.output.photo
-            .map { $0?.fullResolutionImage }
+            .flatMap { asset -> Observable<UIImage?> in
+                if let image = asset?.fullResolutionImage {
+                    return .just(image)
+                } else {
+                    return Observable.create { observer in
+                        guard let asset = asset else {
+                            observer.onNext(nil)
+                            observer.onCompleted()
+                            return Disposables.create()
+                        }
+                        asset.cloudImageDownload(progressBlock: { _ in }) { image in
+                            observer.onNext(image)
+                            observer.onCompleted()
+                        }
+                        return Disposables.create()
+                    }
+                }
+            }
             .filterNil()
             .bind(to: photoView.rx.image)
             .disposed(by: disposeBag)
@@ -227,6 +257,24 @@ final class AddViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
+        viewModel.output.isLoading
+            .map { !$0 }
+            .bind(to: loadingView.rx.isHidden)
+            .disposed(by: disposeBag)
+
+        viewModel.output.isLoading
+            .asDriver()
+            .distinctUntilChanged()
+            .drive(onNext: { [weak self] isLoading in
+                guard let ss = self else { return }
+                if isLoading {
+                    ss.spinnerView.beginRefreshing()
+                } else {
+                    ss.spinnerView.endRefreshing()
+                }
+            })
+            .disposed(by: disposeBag)
+
         viewModel.output.isClose
             .asDriver()
             .distinctUntilChanged()
@@ -236,27 +284,12 @@ final class AddViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.output.isLoading
-            .asDriver()
-            .distinctUntilChanged()
-            .drive(onNext: { [weak self] isLoading in
-                guard let ss = self else { return }
-                if isLoading {
-                    ss.activityIndicator.isHidden = false
-                    ss.activityIndicator.startAnimating()
-                } else {
-                    ss.activityIndicator.isHidden = true
-                    ss.activityIndicator.stopAnimating()
-                }
-            })
-            .disposed(by: disposeBag)
-
         viewModel.output.isError
             .asDriver()
             .distinctUntilChanged()
             .filter { $0 }
             .drive(onNext: { [weak self] _ in
-                let alertController = UIAlertController(title: "에러", message: "사진 업로드에 실패했습니다", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "에러", message: "사진에 정보가 부족합니다.\n다른 사진을 선택해주세요.", preferredStyle: .alert)
                 alertController.addAction(
                     UIAlertAction(title: "닫기", style: .cancel)
                 )
@@ -265,6 +298,10 @@ final class AddViewController: UIViewController {
             .disposed(by: disposeBag)
 
         /// Input
+        descriptionTextView.rx.text.orEmpty
+            .bind(to: viewModel.input.setDescription)
+            .disposed(by: disposeBag)
+
         photoSelectButton.rx.tap
             .asDriver()
             .drive(onNext: { [weak self] in
@@ -276,13 +313,30 @@ final class AddViewController: UIViewController {
                 viewController.configure.allowedVideoRecording = false
                 viewController.configure.allowedAlbumCloudShared = false
                 viewController.configure.mediaType = .image
+                viewController.configure.singleSelectedMode = true
                 viewController.configure.usedCameraButton = false
                 return ss.present(viewController, animated: true)
             })
             .disposed(by: disposeBag)
 
         doneBarButton.rx.tap
-            .bind(to: viewModel.input.savePhoto)
+            .map { [weak self] in self?.viewModel.makeUploadViewModel() }
+            .filterNil()
+            .observeOn(MainScheduler.instance)
+            .flatMapLatest { [weak self] viewModel -> Observable<Bool> in
+                guard let ss = self else { return .empty() }
+                let viewController = UploadViewController(viewModel: viewModel)
+                ss.view.endEditing(true)
+                ss.navigationController?.setNavigationBarHidden(true, animated: false)
+                ss.view.addSubview(viewController.view)
+                ss.addChild(viewController)
+                viewController.didMove(toParent: ss)
+                return viewModel.output.isClose.asObservable()
+            }
+            .filter { $0 }
+            .subscribe(onNext: { [weak self] _ in
+                self?.dismiss(animated: true)
+            })
             .disposed(by: disposeBag)
 
         closeBarButton.rx.tap
@@ -324,7 +378,8 @@ final class AddViewController: UIViewController {
         scrollView.addSubview(descriptionTextView)
         view.addSubview(scrollView)
 
-        view.addSubview(activityIndicator)
+        loadingView.addSubview(spinnerView)
+        view.addSubview(loadingView)
 
         view.addGestureRecognizer(bodyTapGesture)
 

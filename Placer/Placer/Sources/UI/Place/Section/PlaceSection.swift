@@ -33,4 +33,20 @@ enum PlaceItem {
     case image(PostCellModel)
     case content(PostCellModel)
     case action(PostCellModel)
+
+    var viewModel: PostCellModel {
+        switch self {
+        case let .user(viewModel):
+            return viewModel
+
+        case let .image(viewModel):
+            return viewModel
+
+        case let .content(viewModel):
+            return viewModel
+
+        case let .action(viewModel):
+            return viewModel
+        }
+    }
 }

@@ -14,7 +14,7 @@ final class PlaceAnnotation: NSObject, MKAnnotation {
     let title: String?
     let subtitle: String?
 
-    let placeId: Int
+    let postId: Int
     let imageUrl: String
     let imageCount: Int
 
@@ -22,7 +22,7 @@ final class PlaceAnnotation: NSObject, MKAnnotation {
         coordinate: CLLocationCoordinate2D,
         title: String,
         subtitle: String,
-        placeId: Int,
+        postId: Int,
         imageUrl: String,
         imageCount: Int
     ) {
@@ -30,7 +30,7 @@ final class PlaceAnnotation: NSObject, MKAnnotation {
         self.title = title
         self.subtitle = subtitle
 
-        self.placeId = placeId
+        self.postId = postId
         self.imageUrl = imageUrl
         self.imageCount = imageCount
     }
@@ -109,7 +109,12 @@ final class PlaceAnnotationView: MKAnnotationView {
         let borderSize = sizeType.borderSize
 
         if let url = URL(string: annotation.imageUrl) {
-            imageView.kf.setImage(with: url)
+            let resize = ResizingImageProcessor(
+                referenceSize: CGSize(width: 100, height: 100),
+                mode: .aspectFill
+            )
+
+            imageView.kf.setImage(with: url, options: [.processor(resize)])
         }
 
         frame.size = CGSize(width: size, height: size)

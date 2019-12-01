@@ -7,11 +7,14 @@
 //
 
 import MapKit
+import Domain
 import Service
 import RxSwift
 import RxRelay
 
 final class MainViewModel: ViewModel {
+
+    typealias LocationZoom = (CLLocationCoordinate2D, Double)
 
     // MARK: - Dependency
 
@@ -24,6 +27,8 @@ final class MainViewModel: ViewModel {
         let add = PublishRelay<Void>()
         let setCurrentLocation = PublishRelay<Bool>()
         let selectPlace = PublishRelay<Int>()
+
+        let moveCenterLocation = BehaviorRelay<LocationZoom?>(value: nil)
     }
     struct Output {
         let searchQuery = BehaviorRelay<String>(value: "")
@@ -31,6 +36,8 @@ final class MainViewModel: ViewModel {
 
         let isCurrentLocation = BehaviorRelay<Bool>(value: false)
         let currentLocation = BehaviorRelay<Location?>(value: nil)
+
+        let mapPosts = BehaviorRelay<[PostMap]>(value: [])
     }
 
     // MARK: - Property
@@ -47,6 +54,7 @@ final class MainViewModel: ViewModel {
 
     init(
         locationService: LocationService,
+        postService: PostService,
         coordinator: CoordinatorPerformable,
         input: Input = .init(),
         output: Output = .init()
@@ -96,10 +104,38 @@ final class MainViewModel: ViewModel {
             .disposed(by: disposeBag)
 
         input.selectPlace
+            .withLatestFrom(output.mapPosts) { (postId, list) in
+                list.first { $0.id == postId }
+            }
+            .filterNil()
+            .flatMapLatest { post in
+                locationService.searchSimilarCityName(longitude: post.longitude, latitude: post.latitude)
+                    .map { ($0, post.longitude, post.latitude) }
+            }
+            .withLatestFrom(input.moveCenterLocation) {
+                ($0.0, $0.1, $0.2, $1?.1 ?? 10000)
+            }
             .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { placeId in
-                coordinator <- MainCoordinator.Action.pushPlace(placeId)
+            .subscribe(onNext: { (cityName, longitude, latitude, zoom) in
+                coordinator <- MainCoordinator.Action.pushPlace(
+                    cityName: cityName,
+                    longitude: longitude,
+                    latitude: latitude,
+                    zoom: zoom / 10
+                )
             })
+            .disposed(by: disposeBag)
+
+        input.moveCenterLocation
+            .filterNil()
+            .flatMapLatest { (location, zoom) in
+                postService.getPostsByMap(
+                    latitude: location.latitude,
+                    longitude: location.longitude,
+                    zoom: zoom
+                )
+            }
+            .bind(to: output.mapPosts)
             .disposed(by: disposeBag)
     }
 }

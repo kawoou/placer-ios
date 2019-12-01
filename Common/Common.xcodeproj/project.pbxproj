@@ -18,7 +18,6 @@
 		5620BDCF26DC42110BD6785E3EDC5207 /* AbstractError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77673FB00890BABEEC1B4409660D48AC /* AbstractError.swift */; };
 		65C24B8C5A30897E2147C22647B523B0 /* BehaviorObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68D9E18D95CC52BCBCB0275DA35C484 /* BehaviorObservable.swift */; };
 		6AEAE318F456E3B70BAABF779F6FCD1C /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1C0BAC55C7FFA20D11B797A62C122C /* CommonError.swift */; };
-		6B3036EE2F8ACDEB8ED360CC66E5B7E6 /* PostWithLikeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3C145230EEEA24A58E49EB54DD05E4 /* PostWithLikeResponse.swift */; };
 		6EAD2239C80B30A28BFA746553DDCD54 /* Pods_CommonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C60EB34FCA3349B5D9C8C12E3BD8E989 /* Pods_CommonTests.framework */; };
 		7063954D909CD6E6908E38284B014562 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = 57ABCB5BCBAFD3240371498B3DD14753 /* Common.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83E4BAF5B7A13AF360AF124C18DFF2AE /* LoggerConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E669ACB6F6A77BECDCF070D84E8BC8CC /* LoggerConstant.swift */; };
@@ -50,7 +49,6 @@
 		3C76D751B4A41EF3E5D875B7E32228C6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40B7C45A9B5AEC6934D05A82AE5A02F4 /* Pods-CommonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonTests.debug.xcconfig"; path = "Target Support Files/Pods-CommonTests/Pods-CommonTests.debug.xcconfig"; sourceTree = "<group>"; };
 		57ABCB5BCBAFD3240371498B3DD14753 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		5A3C145230EEEA24A58E49EB54DD05E4 /* PostWithLikeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWithLikeResponse.swift; sourceTree = "<group>"; };
 		60E5EAAE2BC0FD6DF85C54F45E0C7FCE /* Pods_Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D3CC98461687E8477DACEFB29632A3D /* ValidError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidError.swift; sourceTree = "<group>"; };
 		6E0E494E2CD31957C4E0CB85867DA64A /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				15BB4468C10B23A77CBC1C2155856627 /* LoginResponse.swift */,
-				5A3C145230EEEA24A58E49EB54DD05E4 /* PostWithLikeResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -479,7 +476,6 @@
 				BC9AD7790AE083644BD2340CF23DEA0F /* NetworkConstant.swift in Sources */,
 				1AA94504DBDD5CF4F144C712E36E144D /* Permission.swift in Sources */,
 				F856C835F51F64CBAB8CC2F283AE72FE /* PhotoServiceError.swift in Sources */,
-				6B3036EE2F8ACDEB8ED360CC66E5B7E6 /* PostWithLikeResponse.swift in Sources */,
 				DDE98D934EE84D3B129982202FA70EE6 /* RegisterRequest.swift in Sources */,
 				5442339E3C51E0957EFB0DE0798DB621 /* SafeLayoutMargin.swift in Sources */,
 				A28A301629F8F3697D59C235EF3B5A0C /* UserServiceError.swift in Sources */,
@@ -553,7 +549,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -641,7 +637,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

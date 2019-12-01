@@ -23,7 +23,11 @@ final class FluentImageView: UIImageView, FluentRenderable {
 
     override var image: UIImage? {
         didSet {
-            blurImage()
+            let image = self.image
+            let bounds = self.bounds
+            DispatchQueue.global().async { [weak self] in
+                self?.blurImage(image: image, bounds: bounds)
+            }
         }
     }
 
@@ -35,12 +39,20 @@ final class FluentImageView: UIImageView, FluentRenderable {
 
     var blurScale: CGFloat = 1 {
         didSet {
-            blurImage()
+            let image = self.image
+            let bounds = self.bounds
+            DispatchQueue.global().async { [weak self] in
+                self?.blurImage(image: image, bounds: bounds)
+            }
         }
     }
     var blurSize: CGFloat = 15 {
         didSet {
-            blurImage()
+            let image = self.image
+            let bounds = self.bounds
+            DispatchQueue.global().async { [weak self] in
+                self?.blurImage(image: image, bounds: bounds)
+            }
         }
     }
 
@@ -53,7 +65,11 @@ final class FluentImageView: UIImageView, FluentRenderable {
         )
 
         if imageView.frame.size != newSize {
-            blurImage()
+            let image = self.image
+            let bounds = self.bounds
+            DispatchQueue.global().async { [weak self] in
+                self?.blurImage(image: image, bounds: bounds)
+            }
         }
 
         imageView.frame.size = newSize
@@ -63,9 +79,11 @@ final class FluentImageView: UIImageView, FluentRenderable {
         )
     }
 
-    private func blurImage() {
+    private func blurImage(image: UIImage?, bounds: CGRect) {
         guard let image = image else {
-            imageView.image = nil
+            DispatchQueue.main.async { [weak self] in
+                self?.imageView.image = nil
+            }
             return
         }
 
@@ -83,7 +101,9 @@ final class FluentImageView: UIImageView, FluentRenderable {
         }
 
         guard let ciImage = CIImage(image: resizeImage) else {
-            imageView.image = nil
+            DispatchQueue.main.async { [weak self] in
+                self?.imageView.image = nil
+            }
             return
         }
 
@@ -92,7 +112,9 @@ final class FluentImageView: UIImageView, FluentRenderable {
         blurFilter?.setValue(blurSize, forKey: kCIInputRadiusKey)
 
         guard let outputImage = blurFilter?.outputImage else {
-            imageView.image = nil
+            DispatchQueue.main.async { [weak self] in
+                self?.imageView.image = nil
+            }
             return
         }
 
@@ -100,7 +122,9 @@ final class FluentImageView: UIImageView, FluentRenderable {
         UIGraphicsBeginImageContext(newSize)
         defer { UIGraphicsEndImageContext() }
         guard let context = UIGraphicsGetCurrentContext() else {
-            imageView.image = nil
+            DispatchQueue.main.async { [weak self] in
+                self?.imageView.image = nil
+            }
             return
         }
         let ciContext = CIContext(options: nil)
@@ -111,10 +135,16 @@ final class FluentImageView: UIImageView, FluentRenderable {
             context.draw(cgImage, in: CGRect(origin: .zero, size: newSize))
         }
         guard let cgImage = context.makeImage() else {
-           imageView.image = nil
-           return
-       }
-        imageView.image = UIImage(cgImage: cgImage)
+            DispatchQueue.main.async { [weak self] in
+                self?.imageView.image = nil
+            }
+            return
+        }
+
+        let uiImage = UIImage(cgImage: cgImage)
+        DispatchQueue.main.async { [weak self] in
+            self?.imageView.image = uiImage
+        }
     }
 
     private func updateInterfaceStyle() {
@@ -152,7 +182,11 @@ final class FluentImageView: UIImageView, FluentRenderable {
         super.init(image: image)
 
         updateInterfaceStyle()
-        blurImage()
+
+        let bounds = self.bounds
+        DispatchQueue.global().async { [weak self] in
+            self?.blurImage(image: image, bounds: bounds)
+        }
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -45,6 +45,11 @@
 		946EBFEF7DCB83EF1F4BBAB175039329 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A77816B21AA47858539793F1CA9C017 /* AppDelegate.swift */; };
 		96E63F2C21AA9567E60D2E76E0811DE3 /* UIView+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F361882CE6D6E8CF0C129EA38359E35A /* UIView+Keyboard.swift */; };
 		987A71532950BC0C7B0C34C0474D6E64 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272AAAF6B354EB0B13E614434C11525 /* LoginCoordinator.swift */; };
+		9D10C3892391B80C00286897 /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D10C3882391B80C00286897 /* PostDetailViewModel.swift */; };
+		9D10C38B2391BA4300286897 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D10C38A2391BA4300286897 /* PostDetailViewController.swift */; };
+		9D10C38D2392A93900286897 /* PostDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D10C38C2392A93900286897 /* PostDetailCoordinator.swift */; };
+		9D7DB263238A66510050C0FC /* UploadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7DB262238A66510050C0FC /* UploadViewModel.swift */; };
+		9D7DB265238A6BA80050C0FC /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7DB264238A6BA80050C0FC /* UploadViewController.swift */; };
 		A095B9F8B80CA2F7EC18EB325F9D5196 /* Pods_PlacerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A6BD9633263A98DFB9D94AAEAA7A3C1 /* Pods_PlacerTests.framework */; };
 		A4A75C7A293F81BF35E43CA9B87AE68E /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AD9512F333E1AA77530AFE88771CEE /* MapCoordinator.swift */; };
 		AC6076003CD7A60EE1984D2FE2C65191 /* UIView+Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384A4604E582AF57900D8FBE743A31D3 /* UIView+Animate.swift */; };
@@ -122,6 +127,11 @@
 		8CFCD2993CE4463C3F716D508ACF765B /* PlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceViewModel.swift; sourceTree = "<group>"; };
 		960D07A4C3E6D3EAB7F92BF3B81BD4CC /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		99F0A4A55A68278DA8A89062D013722C /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D10C3882391B80C00286897 /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
+		9D10C38A2391BA4300286897 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
+		9D10C38C2392A93900286897 /* PostDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailCoordinator.swift; sourceTree = "<group>"; };
+		9D7DB262238A66510050C0FC /* UploadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadViewModel.swift; sourceTree = "<group>"; };
+		9D7DB264238A6BA80050C0FC /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		A272AAAF6B354EB0B13E614434C11525 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		AB7CB5AF3F8F07FD00057DC937425110 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		AE44084186F0608B0A68F8E5E65EDB28 /* Dependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
@@ -243,6 +253,8 @@
 		4718A528DC5AF11217AE43714FC27DAC /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				9D10C3872391B7FB00286897 /* PostDetail */,
+				9D7DB25F238A66010050C0FC /* Upload */,
 				FF0C711375729D98EA781EE466502783 /* Add */,
 				6B3A2CBAC314A713FBE100E4DEBF81E8 /* Common */,
 				FA21B9A559832647C2F5520FE530A500 /* Login */,
@@ -325,6 +337,25 @@
 				72776F47307C32E617F4FAA800ACC8E9 /* TabPagerView.swift */,
 			);
 			path = TabPager;
+			sourceTree = "<group>";
+		};
+		9D10C3872391B7FB00286897 /* PostDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9D10C38C2392A93900286897 /* PostDetailCoordinator.swift */,
+				9D10C3882391B80C00286897 /* PostDetailViewModel.swift */,
+				9D10C38A2391BA4300286897 /* PostDetailViewController.swift */,
+			);
+			path = PostDetail;
+			sourceTree = "<group>";
+		};
+		9D7DB25F238A66010050C0FC /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				9D7DB264238A6BA80050C0FC /* UploadViewController.swift */,
+				9D7DB262238A66510050C0FC /* UploadViewModel.swift */,
+			);
+			path = Upload;
 			sourceTree = "<group>";
 		};
 		A660F9C6849D6A102C6D67D0B387144E /* Sources */ = {
@@ -731,6 +762,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B635A9A3D33059E9A3D5E9CBEEFDE066 /* AddCoordinator.swift in Sources */,
+				9D7DB265238A6BA80050C0FC /* UploadViewController.swift in Sources */,
 				BBFB28C7081517F80780F687FABB43D9 /* AddViewController.swift in Sources */,
 				E70B96C06376B1FCC05CD113AB05670B /* AddViewModel.swift in Sources */,
 				ECAC033D806B3EAAFE5D7A85B765DC5A /* AppCoordinator.swift in Sources */,
@@ -742,10 +774,12 @@
 				2ACACAB21F0F31710E3352FAA11B0ED3 /* FluentRenderInfo.swift in Sources */,
 				319AB09E037799208A4CFC660AB33901 /* FluentRenderable.swift in Sources */,
 				12583AA44B73FEE5DCD61F6E75FCA6E3 /* FluentViewController.swift in Sources */,
+				9D10C38D2392A93900286897 /* PostDetailCoordinator.swift in Sources */,
 				987A71532950BC0C7B0C34C0474D6E64 /* LoginCoordinator.swift in Sources */,
 				D322CDA48EDC3A1FFDF40F044E75E118 /* LoginViewController.swift in Sources */,
 				4D11048695C499C2715880050C4DF50B /* LoginViewModel.swift in Sources */,
 				397EEE1868F333291EF4A80D9775D582 /* MainCoordinator.swift in Sources */,
+				9D10C3892391B80C00286897 /* PostDetailViewModel.swift in Sources */,
 				0754E27D1CD5CA667A2C7BFC557EE8A7 /* MainNavigationController.swift in Sources */,
 				A4A75C7A293F81BF35E43CA9B87AE68E /* MapCoordinator.swift in Sources */,
 				43B070AC24C58109B1B4F38F64804E6C /* MapViewController.swift in Sources */,
@@ -759,7 +793,9 @@
 				DB45085492BB219222AE110AB681BF82 /* PlacerNavigationView.swift in Sources */,
 				C7C43B2E2020737297AA1296AAA45F3F /* PlacerTextField.swift in Sources */,
 				0B4F328115B0F6E3CF8078F26C5FF1BB /* PlacerTextView.swift in Sources */,
+				9D10C38B2391BA4300286897 /* PostDetailViewController.swift in Sources */,
 				663B1D7C2EC9C4BEFF9D9EEF3DE752EF /* PostActionCell.swift in Sources */,
+				9D7DB263238A66510050C0FC /* UploadViewModel.swift in Sources */,
 				D456140B5BBA08C42722D0B78B6FC50A /* PostCellModel.swift in Sources */,
 				B1C58C4809A1EA603BBD262888FFD2E2 /* PostContentCell.swift in Sources */,
 				93F9F038F31FA473D0A9DACFFB22A468 /* PostImageCell.swift in Sources */,
@@ -811,7 +847,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 4U2J29Y5X8;
 				INFOPLIST_FILE = "$(SRCROOT)/Placer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -873,7 +909,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -934,7 +970,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -995,7 +1031,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 4U2J29Y5X8;
 				INFOPLIST_FILE = "$(SRCROOT)/Placer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

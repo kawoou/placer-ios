@@ -7,6 +7,19 @@
 //
 
 public struct PostDetail: Codable {
+    enum CodingKeys: String, CodingKey {
+        case postId
+        case aperture
+        case focalLength
+        case exposureTime
+        case iso
+        case flash
+        case manufacturer
+        case lensModel
+        case altitude
+        case latitude
+        case longitude
+    }
 
     // MARK: - Property
 
@@ -34,11 +47,28 @@ public struct PostDetail: Codable {
     /// 렌즈 모델
     public let lensModel: String?
 
+    /// 고도
+    public let altitude: Double?
+
     public let latitude: Double
     public let longitude: Double
-    public let timestamp: Date
 
     // MARK: - Lifecycle
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.postId = try container.decode(Int.self, forKey: .postId)
+        self.aperture = try container.decodeIfPresent(Double.self, forKey: .aperture)
+        self.focalLength = try container.decodeIfPresent(Double.self, forKey: .focalLength)
+        self.exposureTime = try container.decodeIfPresent(Int.self, forKey: .exposureTime)
+        self.iso = try container.decodeIfPresent(Int.self, forKey: .iso)
+        self.flash = try container.decodeIfPresent(Bool.self, forKey: .flash)
+        self.manufacturer = try container.decodeIfPresent(String.self, forKey: .manufacturer)
+        self.lensModel = try container.decodeIfPresent(String.self, forKey: .lensModel)
+        self.altitude = try container.decodeIfPresent(Double.self, forKey: .altitude)
+        self.latitude = try container.decode(Double.self, forKey: .latitude)
+        self.longitude = try container.decode(Double.self, forKey: .longitude)
+    }
 
     public init(
         postId: Int,
@@ -49,9 +79,9 @@ public struct PostDetail: Codable {
         flash: Bool?,
         manufacturer: String?,
         lensModel: String?,
+        altitude: Double?,
         latitude: Double,
-        longitude: Double,
-        timestamp: Date
+        longitude: Double
     ) {
         self.postId = postId
         self.aperture = aperture
@@ -61,8 +91,8 @@ public struct PostDetail: Codable {
         self.flash = flash
         self.manufacturer = manufacturer
         self.lensModel = lensModel
+        self.altitude = altitude
         self.latitude = latitude
         self.longitude = longitude
-        self.timestamp = timestamp
     }
 }

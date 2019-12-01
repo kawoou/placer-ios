@@ -8,6 +8,7 @@
 
 import UIKit
 import Common
+import Domain
 import RxDataSources
 import RxSwift
 
@@ -17,7 +18,7 @@ final class PlaceViewController: FluentViewController {
 
     private lazy var navigationView: PlacerNavigationView = {
         let view = PlacerNavigationView(height: 90)
-        view.title = "서울 강남 인근"
+        view.title = ""
         view.isBackButton = true
         return view
     }()
@@ -31,7 +32,7 @@ final class PlaceViewController: FluentViewController {
     private lazy var tableView: UITableView = {
         let view = UITableView()
         view.separatorStyle = .none
-        view.allowsSelection = false
+        view.allowsSelection = true
         view.register(PostUserCell.self, forCellReuseIdentifier: "user")
         view.register(PostImageCell.self, forCellReuseIdentifier: "image")
         view.register(PostActionCell.self, forCellReuseIdentifier: "action")
@@ -85,9 +86,35 @@ final class PlaceViewController: FluentViewController {
     }
     private func bind(viewModel: PlaceViewModel) {
         /// Output
+        navigationView.title = "\(viewModel.cityName) 인근"
+
         viewModel.output.sections
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+
+        tableView.rx.modelSelected(PlaceItem.self)
+            .compactMap { item -> Post? in
+                switch item {
+                case .user, .content, .image:
+                    return nil
+                case .action:
+                    return item.viewModel.post
+                }
+            }
+            .bind(to: viewModel.input.toggleLike)
+            .disposed(by: disposeBag)
+
+        tableView.rx.modelSelected(PlaceItem.self)
+            .compactMap { item -> Post? in
+                switch item {
+                case .user, .content, .image:
+                    return item.viewModel.post
+                case .action:
+                    return nil
+                }
+            }
+            .bind(to: viewModel.input.presentDetail)
             .disposed(by: disposeBag)
 
         /// Input
@@ -106,6 +133,12 @@ final class PlaceViewController: FluentViewController {
         navigationView.rx.tapBack
             .map { _ in }
             .bind(to: viewModel.input.back)
+            .disposed(by: disposeBag)
+
+        rx.viewWillAppear
+            .map { _ in }
+            .skip(1)
+            .bind(to: viewModel.input.reload)
             .disposed(by: disposeBag)
     }
 

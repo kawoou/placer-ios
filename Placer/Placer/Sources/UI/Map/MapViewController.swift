@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Common
+import Domain
 import RxSwift
 import RxKeyboard
 import SnapKit
@@ -222,25 +223,48 @@ final class MapViewController: UIViewController {
                 )
 
                 ss.mapView.setCenter(location, animated: true)
-                ss.mapView.addAnnotation(
-                    PlaceAnnotation(
-                        coordinate: CLLocationCoordinate2D(
-                            latitude: $0.latitude,
-                            longitude: $0.longitude + 2
-                        ),
-                        title: "Test",
-                        subtitle: "Test",
-                        placeId: 1,
-                        imageUrl: "https://file.namu.moe/file/8bc9e381797334eb33da66e3ba501be19a84cc65093f53f8372a942bce0445d799dbcb99bd6f48cca013ceb0b5a36929",
-                        imageCount: 2
-                    )
-                )
             })
             .disposed(by: disposeBag)
 
         viewModel.output.isCurrentLocation
             .distinctUntilChanged()
             .bind(to: currentLocationButton.rx.isSelected)
+            .disposed(by: disposeBag)
+
+        viewModel.output.mapPosts
+            .scan(([], [])) { (old, new) -> ([PostMap], [PostMap]) in
+                return (old.1, new)
+            }
+            .observeOn(MainScheduler.instance)
+            .map { (oldList, newList) -> (Set<PostMap>, [PlaceAnnotation]) in
+                let oldSet = Set(oldList)
+                let newSet = Set(newList)
+                let removeList = oldSet.subtracting(newSet)
+
+                let addList = newSet.subtracting(oldSet).map { post in
+                    PlaceAnnotation(
+                        coordinate: CLLocationCoordinate2D(latitude: post.latitude, longitude: post.longitude),
+                        title: post.writerNickname,
+                        subtitle: post.content ?? "",
+                        postId: post.id,
+                        imageUrl: post.imageUrl,
+                        imageCount: 0
+                    )
+                }
+                return (removeList, addList)
+            }
+            .bind { [weak self] (removeList, addList) in
+                guard let ss = self else { return }
+
+                let removeIds = Set(removeList.map { $0.id })
+                ss.mapView.removeAnnotations(
+                    ss.mapView.annotations.filter {
+                        guard let annotation = $0 as? PlaceAnnotation else { return false }
+                        return removeIds.contains(annotation.postId)
+                    }
+                )
+                ss.mapView.addAnnotations(addList)
+            }
             .disposed(by: disposeBag)
 
         /// Input
@@ -350,7 +374,7 @@ extension MapViewController: MKMapViewDelegate {
     }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let annotation = view.annotation as? PlaceAnnotation else { return }
-        viewModel.input.selectPlace.accept(annotation.placeId)
+        viewModel.input.selectPlace.accept(annotation.postId)
 
         DispatchQueue.main.async {
             for item in mapView.selectedAnnotations {
@@ -359,6 +383,14 @@ extension MapViewController: MKMapViewDelegate {
         }
     }
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        print(mapView.region.center)
+        viewModel.input.moveCenterLocation.accept(
+            (
+                mapView.region.center,
+                max(
+                    mapView.region.span.longitudeDelta,
+                    mapView.region.span.latitudeDelta
+                ) * 111000
+            )
+        )
     }
 }

@@ -22,6 +22,7 @@ final class PostActionCell: UITableViewCell {
         button.contentEdgeInsets = UIEdgeInsets(top: 14, left: 14, bottom: 14, right: 14)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         button.tintColor = Asset.colorHighlightRed.color
+        button.isUserInteractionEnabled = false
         return button
     }()
 
@@ -42,7 +43,7 @@ final class PostActionCell: UITableViewCell {
         disposeBag = DisposeBag()
 
         likeButton.setTitle("  좋아요 \(viewModel.post.likeCount)", for: .normal)
-        likeButton.isSelected = viewModel.post.isLiked
+        likeButton.isSelected = viewModel.post.isLiked ?? false
     }
 
     // MARK: - Lifecycle
@@ -51,6 +52,7 @@ final class PostActionCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         backgroundColor = .clear
+        selectionStyle = .none
 
         contentView.addSubview(likeButton)
 
